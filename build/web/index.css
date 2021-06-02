@@ -1,0 +1,481 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 1 juin 2021, 17:34:10
+    Author     : Blanco
+*/
+
+html, body
+{
+  height: fit-content;
+  padding: 0;
+  margin: 0;
+  font-family: 'Ubuntu', sans-serif , monospace !important;  
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; /* to hide extra right space in iPhone 5/SE */
+
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+*
+{
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  
+}
+
+
+/* HEADER STYLE BEGIN */
+header{
+    display: inline-block;
+    width: 100%;
+    padding: 0px 80px;
+    margin-bottom: -4px;
+    background-color: #092c5c;
+    position: relative;
+}
+.logo{
+    float: left;
+}
+.header-logo{
+    width: 190px;
+    margin: 20px 0px;
+}
+nav{
+    float: right;
+}
+nav ul li{
+    display: inline-block;
+    padding: 15px 25px;
+}
+nav ul li a{
+    text-decoration: none;
+    display: inline-block;
+    color: whitesmoke;
+    font-weight: 100;
+    text-transform: uppercase;
+}
+nav ul li a:hover{
+    color: #fff952 ;
+}
+#active-tab{
+    color: #fff952 ;
+}
+.toggle-btn{
+    display: none;
+    position: absolute;
+    width: 35px;
+    right: 26px;
+    top: 27px;
+}
+.toggle-btn span{
+    display: inline-block;
+    float: left;
+    width: 100%;
+    height: 3px;
+    background-color: #fff952;
+    margin-bottom: 8px;
+    border-radius: 8px;
+}
+
+@media (max-width: 1175px) {
+    .toggle-btn{
+        display: block;
+    }
+    nav{
+        display: none;
+        width: 100%;
+        border-top: 1px solid #fff952 ;
+        padding-top: 20px;
+        margin-top: 20px;
+        text-align: center;
+    }
+    nav ul{
+        padding: 0;
+    }
+    nav ul li {
+        padding: 15px;
+        width: 100%;
+    }
+    nav.show{
+        display: block;
+    }
+}
+/* HEADER STYLE END */
+
+
+/* FOOTER BEGIN */
+footer{
+    display: flex;
+    flex-direction: column;
+    font-weight: 100;
+}
+.footer-top{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    background-color: #092c5c;
+    color: whitesmoke;
+    width: 100%;
+}
+.footer-top-items{
+    min-width: 300px;
+    width: 25%;
+    padding: 20px 50px 50px;
+}
+.footer-bottom{
+    background-color: #fbf775 ;
+    color: #092c5c;
+    text-align: center;
+    padding: 10px;
+}
+.footer-top-items ul {
+    padding: 0px;
+    list-style: none;
+}
+.footer-top-items ul li {
+    margin-bottom: 16px;
+}
+.footer-top-items ul li a{
+    text-decoration: none;
+    color: whitesmoke;
+}
+.icon{
+    color: #fff952;
+    background-color: none;
+}
+.social-icon{
+    color: #fff952;
+    background-color: none;
+    text-decoration: none;
+    font-size: 30px;
+    padding-right:30px ;
+}
+/* FOOTER END */
+
+
+.background-image
+{
+    width: 100%; 
+    height: 100%;
+    background-image: url('./Assets/Images/FullBackground.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat; 
+    background-attachment: fixed;
+}
+
+
+
+
+
+/* TOP MENU BEGIN */
+
+
+.home-container{
+    width: 100%; 
+    height: fit-content;
+    background-image: url(./Assets/Images/search-background.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat; 
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;}
+
+.search-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: whitesmoke;
+    margin: 0 0 200px ;
+
+}
+.search-container h1{
+    font-size: 38px;
+    text-align: center;
+    color: whitesmoke;
+    text-transform: uppercase;
+    margin: 150px 10px 40px;
+}
+.search-container h2{
+    text-align: center;
+    font-weight: 100;
+    margin-bottom: 80px;
+    color: whitesmoke;
+    text-transform: uppercase;
+}
+.search-boxes{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 0px 50px 10px;
+    margin-bottom: 50px;
+    border-bottom: rgba(246, 255, 0, 0.365) 1px solid;
+
+}
+.search-profession, .search-ville, .search-btn{
+    padding: 0 50px 20px 0;
+}
+
+.search-profession label{
+    color: whitesmoke;
+    line-height: 3 ;
+}
+.search-ville label{
+    color: whitesmoke;
+    line-height: 3 ;
+}
+#professions, #villes{
+    height: 33px;
+    width: 310px;
+    border-radius: 8px;
+    text-transform: uppercase;
+}
+#rechercher{
+    height: 33px;
+    width: 50px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.607);
+    cursor: pointer;
+}
+
+@media (max-width : 961px){
+    .search-boxes{
+        max-width: 310px;
+    }
+    .search-container h2{
+        text-align: center;
+        padding: 15px 10px;
+   }
+}
+
+
+
+@media (max-width : 500px){
+   .search-container h2{
+        text-align: center;
+        padding: 15px 10px;
+   }
+ 
+    .search-profession, .search-ville, .search-btn{
+        padding: 0;
+        margin: 0;
+    }
+    .search-btn{
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    
+}
+.under-search{
+    text-align: center;
+    margin-bottom: 100px;
+}
+.register-btnn{
+    font-weight: 300;
+    font-size: 20px;
+    text-decoration: none;
+    color: whitesmoke;
+    border: #fbf775 1px solid;
+    border-radius: 8px;
+    padding: 10px 25px;
+    text-align: center;
+}
+
+.register-btnn:hover{
+    color: #244e86;
+    background-color: #fbf775;
+    border-color: #244e86;
+    transition: 0.5s;
+}
+/* TOP MENU END */
+
+
+
+
+
+/* HOW TO USE BEGIN */
+.use-container{
+    text-align: center;
+    margin-bottom: 200px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;}
+.use-container h1{
+    background-color: #244e86;
+    color: #fbf775;
+    padding: 15px ;
+    margin: 0;
+    font-weight: 500;
+}
+.cherche-propose{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #fbf775;
+}
+.je-cherche, .je-propose{
+    width: 391px;  
+    padding: 20px;
+    margin: 0 70px;
+    color: #244e86;
+    transition: all .2s ease-in-out;
+}
+.je-cherche h2, .je-propose h2{
+    border-bottom: solid 1px #244e8620;
+    padding-bottom: 10px;
+    font-weight: 400;
+}
+.je-cherche p, .je-propose p{
+    font-size: 18px;
+    font-weight: 100;
+}
+.je-cherche:hover, .je-propose:hover{
+    transform: scale(1.04);
+}
+@media (max-width:771px){
+    .je-cherche, .je-propose{
+        margin: 0 10px;
+    }
+}
+/* HOW TO USE END */
+
+
+
+/* RAPID SEARCH BEGIN */
+.rapid-search-container{
+    text-align: center;
+    margin-bottom: 200px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+.rapid-search-header{
+    background-color: #244e86;
+    color: #fbf775;
+}
+.rapid-search-header h1{
+    padding: 15px ;
+    margin: 0;
+    font-weight: 500;
+}
+.rapid-search-cards{
+    background-color: #fbf775;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.search-card{
+    color: #244e86;
+    text-align: left;
+    padding: 20px;
+    margin: 10px 20px 20px 20px;
+    width: 300px;
+}
+.search-card h2{
+    text-transform: uppercase;
+    font-weight: 400;
+    border-bottom: 1px solid #013f9621;
+}
+.search-card a{
+    text-decoration: none;
+    color: #013f96;
+    font-weight: 100;
+}
+.search-card a:hover{
+    text-decoration: underline;
+    color: #0b4ead;
+}
+/* RAPID SEARCH END */
+
+
+
+
+/* WHAT WILL YOU LIKE BEGIN */
+.like-container{
+    text-align: center;
+    margin-bottom: 200px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+.like-container h1{
+    background-color: #244e86;
+    color: #fbf775;
+    padding: 15px ;
+    margin: 0;
+    font-weight: 500;
+}
+.like-cards-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-color: #fbf775;
+    color: #244e86;
+}
+.like-card{
+    width: 370px;
+    margin: 15px 20px 0;
+    padding: 20px 10px;
+    transition: all .2s ease-in-out;
+
+}
+.like-card i{
+    font-size: 70px;
+    font-weight: 600;
+}
+.like-card h2{
+    text-transform: uppercase;
+    font-weight: 400;
+}
+.like-card p{
+    font-size: 18px;
+    font-weight: 100;
+}
+.like-card:hover{
+    transform: scale(1.04);
+
+}
+/* WHAT WILL YOU LIKE END */
+
+
+/* CONTACT US BEGIN */
+.contact-us-container{
+    background-color: #244e86;
+    text-align: center;
+}
+.contact-us-bottom{ 
+   padding-bottom: 50px;
+}
+.contact-us-bottom h1{
+    color: #fbf775;
+    text-transform: uppercase;
+    font-weight: 400;
+    padding: 50px 50px 10px;
+}
+.contact-us-bottom a{
+    font-weight: 300;
+    font-size: 20px;
+    text-decoration: none;
+    color: #fbf775;
+    border: #fbf775 1px solid;
+    border-radius: 8px;
+    padding: 10px 25px;
+    text-align: center;
+}
+.contact-us-bottom a:hover{
+    color: #244e86;
+    background-color: #fbf775;
+    border-color: #244e86;
+    transition: 0.5s;
+}
+/* CONTACT US END */

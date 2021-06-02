@@ -1,0 +1,304 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 1 juin 2021, 17:54:52
+    Author     : Blanco
+*/
+
+html, body
+{
+  height: fit-content;
+  padding: 0;
+  margin: 0;
+  font-family: 'Ubuntu', sans-serif , monospace !important;  
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; /* to hide extra right space in iPhone 5/SE */
+
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+*
+{
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  
+}
+
+
+/* HEADER STYLE BEGIN */
+header{
+    display: inline-block;
+    width: 100%;
+    padding: 0px 80px;
+    background-color: #092c5c;
+    margin: 0 0 -4px;
+    position: relative;
+}
+.logo{
+    float: left;
+}
+.header-logo{
+    width: 190px;
+    margin: 20px 0px;
+}
+nav{
+    float: right;
+}
+nav ul li{
+    display: inline-block;
+    padding: 15px 25px;
+}
+nav ul li a{
+    text-decoration: none;
+    display: inline-block;
+    color: whitesmoke;
+    font-weight: 100;
+    text-transform: uppercase;
+}
+nav ul li a:hover{
+    color: #fff952 ;
+}
+#active-tab{
+    color: #fff952 ;
+}
+.toggle-btn{
+    display: none;
+    position: absolute;
+    width: 35px;
+    right: 26px;
+    top: 27px;
+}
+.toggle-btn span{
+    display: inline-block;
+    float: left;
+    width: 100%;
+    height: 3px;
+    background-color: #fff952;
+    margin-bottom: 8px;
+    border-radius: 8px;
+}
+
+@media (max-width: 1175px) {
+    .toggle-btn{
+        display: block;
+    }
+    nav{
+        display: none;
+        width: 100%;
+        border-top: 1px solid #fff952 ;
+        padding-top: 20px;
+        margin-top: 20px;
+        text-align: center;
+    }
+    nav ul{
+        padding: 0;
+    }
+    nav ul li {
+        padding: 15px;
+        width: 100%;
+    }
+    nav.show{
+        display: block;
+    }
+}
+/* HEADER STYLE END */
+
+
+/* FOOTER BEGIN */
+footer{
+    display: flex;
+    flex-direction: column;
+    font-weight: 100;
+}
+.footer-top{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    background-color: #092c5c;
+    color: whitesmoke;
+    width: 100%;
+}
+.footer-top-items{
+    min-width: 300px;
+    width: 25%;
+    padding: 20px 50px 50px;
+}
+.footer-bottom{
+    background-color: #fbf775 ;
+    color: #092c5c;
+    text-align: center;
+    padding: 10px;
+}
+.footer-top-items ul {
+    padding: 0px;
+    list-style: none;
+}
+.footer-top-items ul li {
+    margin-bottom: 16px;
+}
+.footer-top-items ul li a{
+    text-decoration: none;
+    color: whitesmoke;
+}
+.icon{
+    color: #fff952;
+    background-color: none;
+}
+.social-icon{
+    color: #fff952;
+    background-color: none;
+    text-decoration: none;
+    font-size: 30px;
+    padding-right:30px ;
+}
+/* FOOTER END */
+
+
+
+.background-image
+{
+    width: 100%; 
+    height: 100%;
+    background-image: url('./../Assets/Images/FullBackground.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat; 
+    background-attachment: fixed;
+}
+
+
+.register-container{
+    margin: 150px auto;
+    
+}
+
+.register-header{
+    text-align: center;
+    padding: 10px;
+    background-color: #faf67b;
+    color: #244E86;
+}
+
+.register-header h2{
+    text-transform: uppercase;
+}
+
+.register-header h3{
+    font-weight: 400;
+}
+
+.register-form-hero{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: #244E86;
+    color: #faf67b;
+}
+ 
+
+.register-form{
+    padding: 80px 0  ;
+    width: 500px;
+}
+
+
+
+.input-form{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.input-form label{
+    width: 180px;
+    font-weight: 100;
+}
+
+.input-form textarea{
+    width: 300px;
+    border: 1px solid #fff952;
+    border-radius: 8px;
+    resize: none;
+}
+.input-form input, select {
+    width: 300px;
+    height: 29px;
+    border: 1px solid #fff952;
+    border-radius: 8px;
+}
+
+.register-btn-div{
+ text-align: center;
+}
+
+.register-btn{
+    width: 500px;
+    height: 45px;
+    border: 1px solid #fff952;
+    border-radius: 8px;
+    background-color: #244E86;
+    color: #fbf775;
+    margin: 30px 0 0 0;
+    padding: 8px ;
+    font-size: 16px;
+}
+.register-btn:hover{
+    background-color: #fff952;
+    color: #244E86;
+}
+
+.login-div{
+    text-align: center;
+    padding: 10px 0 37px;
+    background-color: #faf67b;
+    color: #244E86;
+    font-weight: 100;
+    text-transform: uppercase;
+}
+.login-div h2{
+    margin-bottom: 30px;
+}
+
+.login-btn{
+    text-decoration: none;
+    border: 1px solid #fff952;
+    border-radius: 8px;
+    background-color: #244E86;
+    color: #fbf775;
+    margin: 30px 0 0 0;
+    padding: 10px 25px ;
+    font-size: 16px;
+}
+
+.login-btn:hover{
+    border-color:#244E86 ;
+    
+    background-color: #fbf775;
+    color: #244E86;
+  
+}
+
+
+@media (max-width: 991px) {
+
+    .register-form{
+        width: 300px;
+    }
+
+    .register-btn{
+        width: 300px;
+    }
+}

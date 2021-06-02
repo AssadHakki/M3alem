@@ -1,0 +1,325 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 1 juin 2021, 17:56:05
+    Author     : Blanco
+*/
+
+html, body
+{
+  height: fit-content;
+  padding: 0;
+  margin: 0;
+  font-family: 'Ubuntu', sans-serif , monospace !important;  
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; /* to hide extra right space in iPhone 5/SE */
+
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+*
+{
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  
+}
+
+
+/* HEADER STYLE BEGIN */
+header{
+    display: inline-block;
+    width: 100%;
+    padding: 0px 80px;
+    margin-bottom: -4px;
+    background-color: #092c5c;
+    position: relative;
+}
+.logo{
+    float: left;
+}
+.header-logo{
+    width: 190px;
+    margin: 20px 0px;
+}
+nav{
+    float: right;
+}
+nav ul li{
+    display: inline-block;
+    padding: 15px 25px;
+}
+nav ul li a{
+    text-decoration: none;
+    display: inline-block;
+    color: whitesmoke;
+    font-weight: 100;
+    text-transform: uppercase;
+}
+nav ul li a:hover{
+    color: #fff952 ;
+}
+#active-tab{
+    color: #fff952 ;
+}
+.toggle-btn{
+    display: none;
+    position: absolute;
+    width: 35px;
+    right: 26px;
+    top: 27px;
+}
+.toggle-btn span{
+    display: inline-block;
+    float: left;
+    width: 100%;
+    height: 3px;
+    background-color: #fff952;
+    margin-bottom: 8px;
+    border-radius: 8px;
+}
+
+@media (max-width: 1175px) {
+    .toggle-btn{
+        display: block;
+    }
+    nav{
+        display: none;
+        width: 100%;
+        border-top: 1px solid #fff952 ;
+        padding-top: 20px;
+        margin-top: 20px;
+        text-align: center;
+    }
+    nav ul{
+        padding: 0;
+    }
+    nav ul li {
+        padding: 15px;
+        width: 100%;
+    }
+    nav.show{
+        display: block;
+    }
+}
+/* HEADER STYLE END */
+
+
+/* FOOTER BEGIN */
+footer{
+    display: flex;
+    flex-direction: column;
+    font-weight: 100;
+}
+.footer-top{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    background-color: #092c5c;
+    color: whitesmoke;
+    width: 100%;
+    margin-top: 90px;
+
+}
+.footer-top-items{
+    min-width: 300px;
+    width: 25%;
+    padding: 20px 50px 50px;
+}
+.footer-bottom{
+    background-color: #fbf775 ;
+    color: #092c5c;
+    text-align: center;
+    padding: 10px;
+}
+.footer-top-items ul {
+    padding: 0px;
+    list-style: none;
+}
+.footer-top-items ul li {
+    margin-bottom: 16px;
+}
+.footer-top-items ul li a{
+    text-decoration: none;
+    color: whitesmoke;
+}
+.icon{
+    color: #fff952;
+    background-color: none;
+}
+.social-icon{
+    color: #fff952;
+    background-color: none;
+    text-decoration: none;
+    font-size: 30px;
+    padding-right:30px ;
+}
+/* FOOTER END */
+
+
+
+.background-image
+{
+    width: 100%; 
+    height: 100%;
+    background-image: url('./../Assets/Images/FullBackground.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat; 
+    background-attachment: fixed;
+}
+
+
+
+/* SEARCH BOXES BEGIN */
+.search-container{
+    width: 100%; 
+    height: fit-content;
+    background-color: #244e86;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: whitesmoke;
+    margin: 0 0 100px;
+    padding: 55px 0;
+}
+.search-container h1{
+    margin-top: 25px;
+    color: #fbf775;
+    border-bottom:1px solid #fbf67548 ;
+    padding: 0 0 30px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+.search-boxes{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 0px 50px 10px;
+}
+.search-profession, .search-ville, .search-btn{
+    padding: 0 50px 20px 0;
+}
+.search-profession label i, .search-ville label i{
+    color: #fbf775;
+    padding-right: 8px;
+}
+.search-profession label{
+    color: whitesmoke;
+    line-height: 3 ;
+}
+.search-ville label{
+    color: whitesmoke;
+    line-height: 3 ;
+}
+#professions, #villes{
+    height: 33px;
+    width: 310px;
+    border-radius: 8px;
+    text-transform: uppercase;
+}
+#rechercher{
+    height: 33px;
+    width: 50px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.607);
+    cursor: pointer;
+}
+
+@media (max-width : 961px){
+    .search-boxes{
+        max-width: 310px;
+    }
+    .search-container h2{
+        text-align: center;
+        padding: 15px 10px;
+   }
+}
+
+
+
+@media (max-width : 500px){
+   .search-container h2{
+        text-align: center;
+        padding: 15px 10px;
+   }
+ 
+    .search-profession, .search-ville, .search-btn{
+        padding: 0;
+        margin: 0;
+    }
+    .search-btn{
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    
+}
+/* SEARCH BOXES END */
+
+
+/* CARDS BEGIN */
+.card-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.father{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;   
+    justify-content: center;
+}
+.card{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: 300px;
+    margin: 20px;
+    text-align: center;
+}
+.image{
+    width: 300px;
+    height: 300px;
+}
+.fullname{
+    text-transform: uppercase;
+    padding: 0 15px;
+}
+.service{
+    font-size: 18px;
+    font-weight: 400;
+    color: black;
+    padding: 0 15px;
+}
+.bio{
+    font-size: 16px;
+    font-weight: 100;
+    color: black;
+    padding: 0 15px;
+}
+.card a{
+    display: inline-flex;
+    justify-content: center;
+    background-color: #092c5c;
+    color: #fbf775;
+    padding: 10px ;
+    margin-top: 20px;
+    width: 300px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+.card a:hover{
+    color: #092c5c;
+    background-color: #fbf775;
+    transition: 1s;
+}
+/* CARDS END */
