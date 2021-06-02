@@ -41,6 +41,12 @@ public final class Register_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
+      out.write('\n');
+      out.write('\n');
+
+    if (session.getAttribute("nom") != null) {
+        response.sendRedirect("./../index.jsp");
+    }
       out.write("\n");
       out.write("\n");
       out.write("\n");
@@ -102,12 +108,27 @@ public final class Register_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("          <li><a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("/Prestataires/Prestataires.jsp\">Prestataires</a></li>\n");
-      out.write("          <li><a href=\"");
+      out.write("            ");
+
+                            if (session.getAttribute("nom") != null) {
+      out.write("\n");
+      out.write("\n");
+      out.write("                    <li>  <form method=\"POST\" action=\"auth\">\n");
+      out.write("                            <input type=\"submit\" value=\"Se Deconnecter\" name=\"operation\" class=\"linkish\" style=\" background-color: transparent; border: 0; color: whitesmoke; cursor: pointer;\n");
+      out.write("                                   display: inline;  outline: none;  font-weight: 100;  text-transform: uppercase; \"/> </form></li>\n");
+      out.write("\n");
+      out.write("                    ");
+   } else {
+      out.write("\n");
+      out.write("                    <li><a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/Login/Login.jsp\">Connexion</a></li>\n");
-      out.write("          <li><a href=\"");
+      out.write("/Login/Login.jsp\" >Connexion</a></li>\n");
+      out.write("                    <li><a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("/Register/Register.jsp\" id=\"active-tab\">Inscription</a></li>\n");
+      out.write("                        ");
+ }                        
+      out.write("\n");
       out.write("        </ul>\n");
       out.write("      </nav>\n");
       out.write("    </header>\n");
@@ -190,12 +211,17 @@ public final class Register_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("                   <div  class=\"input-form\">\n");
       out.write("                        <label> Années d'expérience :</label>\n");
-      out.write("                        <input type=\"number\" name=\"experience\">\n");
+      out.write("                       <select name=\"experience\" id=\"experience\">\n");
+      out.write("                         <option value=\"Entre 1 et 3 ans\">Entre 1 et 3 ans</option>\n");
+      out.write("                         <option value=\"Entre 4 et 7 ans\">Entre 4 et 7 ans</option>\n");
+      out.write("                         <option value=\"Entre 7 et 10 ans\">Entre 7 et 10 ans</option>\n");
+      out.write("                         <option value=\"Plus de 10 ans\">Plus de 10 ans</option>\n");
+      out.write("                       </select>\n");
       out.write("                   </div>\n");
       out.write("\n");
       out.write("                   <div  class=\"input-form\">\n");
       out.write("                      <label> Biographie :</label>\n");
-      out.write("                      <textarea name=\"bio\"  rows=\"4\"></textarea>\n");
+      out.write("                      <textarea name=\"bio\"  rows=\"4\" onClick=\"this.focus();this.select()\" >Je n ai pas encore ajouté de biographie</textarea>\n");
       out.write("                   </div>\n");
       out.write("\n");
       out.write("                   <div  class=\"input-form\">\n");
@@ -208,22 +234,26 @@ public final class Register_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <input type=\"password\" name=\"password\" >\n");
       out.write("                   </div>\n");
       out.write("\n");
-      out.write("                   <div class=\"register-btn-div\">\n");
-      out.write("                       <button type=\"submit\" name=\"operation\" value=\"register\" class=\"register-btn\">S'INSCRIRE</button>\n");
-      out.write("                   </div>\n");
-      out.write("                    ");
+      out.write("                      ");
   
                         if(request.getAttribute("message")!=null)
                             out.print("<p style='color: red '>"+request.getAttribute("message")+"</p>");                       
                     
       out.write("\n");
+      out.write("                    \n");
+      out.write("                   <div class=\"register-btn-div\">\n");
+      out.write("                       <button type=\"submit\" name=\"operation\" value=\"register\" class=\"register-btn\">S'INSCRIRE</button>\n");
+      out.write("                   </div>\n");
+      out.write("                  \n");
       out.write("\n");
       out.write("                </div>\n");
       out.write("            </form>\n");
       out.write("        </div>\n");
       out.write("        <div class=\"login-div\">\n");
       out.write("            <h2> Avez-vous déja un compte ? </h2>\n");
-      out.write("             <a class=\"login-btn\" href=\"./../Login/Login.jsp\">Se connecter</a>\n");
+      out.write("             <a class=\"login-btn\" href=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/Login/Login.jsp\">Se connecter</a>\n");
       out.write("        </div>\n");
       out.write("    </div>\n");
       out.write("\n");
@@ -248,10 +278,18 @@ public final class Register_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <div class=\"footer-top-items\">\n");
       out.write("          <h2>LIENS UTILES</h2>\n");
       out.write("          <ul>\n");
-      out.write("            <li><a href=\"./../index.jsp\">Acceuil</a></li>\n");
-      out.write("            <li><a href=\"./../Prestataires/Prestataires.jsp\">Prestataires</a></li>\n");
-      out.write("            <li><a href=\"./../About/About.jsp\">Qui sommes nous?</a></li>\n");
-      out.write("            <li><a href=\"./../Contact/Contact.jsp\">Contactez nous</a></li>\n");
+      out.write("            <li><a href=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/index.jsp\">Acceuil</a></li>\n");
+      out.write("            <li><a href=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/Prestataires/Prestataires.jsp\">Prestataires</a></li>\n");
+      out.write("            <li><a href=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/About/About.jsp\">Qui sommes nous?</a></li>\n");
+      out.write("            <li><a href=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/Contact/Contact.jsp\">Contactez nous</a></li>\n");
       out.write("          </ul>\n");
       out.write("        </div>\n");
       out.write("        <div class=\"footer-top-items\">\n");

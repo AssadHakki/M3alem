@@ -4,6 +4,11 @@
     Author     : Blanco
 --%>
 
+<%
+    if (session.getAttribute("nom") != null) {
+        response.sendRedirect("./../index.jsp");
+    }%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,8 +54,17 @@
           <li><a href="${pageContext.request.contextPath}/index.jsp">Acceuil</a></li>
           <li><a href="${pageContext.request.contextPath}/About/About.jsp">Qui sommes-nous ?</a></li>
           <li><a href="${pageContext.request.contextPath}/Prestataires/Prestataires.jsp">Prestataires</a></li>
-          <li><a href="${pageContext.request.contextPath}/Login/Login.jsp">Connexion</a></li>
-          <li><a href="${pageContext.request.contextPath}/Register/Register.jsp" id="active-tab">Inscription</a></li>
+            <%
+                            if (session.getAttribute("nom") != null) {%>
+
+                    <li>  <form method="POST" action="auth">
+                            <input type="submit" value="Se Deconnecter" name="operation" class="linkish" style=" background-color: transparent; border: 0; color: whitesmoke; cursor: pointer;
+                                   display: inline;  outline: none;  font-weight: 100;  text-transform: uppercase; "/> </form></li>
+
+                    <%   } else {%>
+                    <li><a href="${pageContext.request.contextPath}/Login/Login.jsp" >Connexion</a></li>
+                    <li><a href="${pageContext.request.contextPath}/Register/Register.jsp" id="active-tab">Inscription</a></li>
+                        <% }                        %>
         </ul>
       </nav>
     </header>
@@ -133,12 +147,17 @@
 
                    <div  class="input-form">
                         <label> Années d'expérience :</label>
-                        <input type="number" name="experience">
+                       <select name="experience" id="experience">
+                         <option value="Entre 1 et 3 ans">Entre 1 et 3 ans</option>
+                         <option value="Entre 4 et 7 ans">Entre 4 et 7 ans</option>
+                         <option value="Entre 7 et 10 ans">Entre 7 et 10 ans</option>
+                         <option value="Plus de 10 ans">Plus de 10 ans</option>
+                       </select>
                    </div>
 
                    <div  class="input-form">
                       <label> Biographie :</label>
-                      <textarea name="bio"  rows="4"></textarea>
+                      <textarea name="bio"  rows="4" onClick="this.focus();this.select()" >Je n ai pas encore ajouté de biographie</textarea>
                    </div>
 
                    <div  class="input-form">
@@ -151,13 +170,15 @@
                         <input type="password" name="password" >
                    </div>
 
-                   <div class="register-btn-div">
-                       <button type="submit" name="operation" value="register" class="register-btn">S'INSCRIRE</button>
-                   </div>
-                    <%  
+                      <%  
                         if(request.getAttribute("message")!=null)
                             out.print("<p style='color: red '>"+request.getAttribute("message")+"</p>");                       
                     %>
+                    
+                   <div class="register-btn-div">
+                       <button type="submit" name="operation" value="register" class="register-btn">S'INSCRIRE</button>
+                   </div>
+                  
 
                 </div>
             </form>

@@ -4,6 +4,13 @@
     Author     : Blanco
 --%>
 
+<%
+    if (session.getAttribute("nom") != null) {
+        response.sendRedirect("./../index.jsp");
+
+    }%>
+
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,8 +57,17 @@
           <li><a href="${pageContext.request.contextPath}/index.jsp">Acceuil</a></li>
           <li><a href="${pageContext.request.contextPath}/About/About.jsp">Qui sommes-nous ?</a></li>
           <li><a href="${pageContext.request.contextPath}/Prestataires/Prestataires.jsp">Prestataires</a></li>
-          <li><a href="${pageContext.request.contextPath}/Login/Login.jsp" id="active-tab">Connexion</a></li>
-          <li><a href="${pageContext.request.contextPath}/Register/Register.jsp">Inscription</a></li>
+            <%
+                            if (session.getAttribute("nom") != null) {%>
+
+                    <li>  <form method="POST" action="auth">
+                            <input type="submit" value="Se Deconnecter" name="operation" class="linkish" style=" background-color: transparent; border: 0; color: whitesmoke; cursor: pointer;
+                                   display: inline;  outline: none;  font-weight: 100;  text-transform: uppercase; "/> </form></li>
+
+                    <%   } else {%>
+                    <li><a href="${pageContext.request.contextPath}/Login/Login.jsp" id="active-tab">Connexion</a></li>
+                    <li><a href="${pageContext.request.contextPath}/Register/Register.jsp">Inscription</a></li>
+                        <% }                        %>
         </ul>
       </nav>
     </header>
@@ -115,7 +131,6 @@
           <h2>LIENS UTILES</h2>
           <ul>
             <li><a href="${pageContext.request.contextPath}/index.jsp">Acceuil</a></li>
-            <li><a href="${pageContext.request.contextPath}/About/About.jsp">Qui sommes-nous ?</a></li>
             <li><a href="${pageContext.request.contextPath}/Prestataires/Prestataires.jsp">Prestataires</a></li>
             <li><a href="${pageContext.request.contextPath}/About/About.jsp">Qui sommes nous?</a></li>
             <li><a href="${pageContext.request.contextPath}/Contact/Contact.jsp">Contactez nous</a></li>

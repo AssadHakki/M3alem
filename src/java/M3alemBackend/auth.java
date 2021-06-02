@@ -18,6 +18,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import org.jboss.weld.literal.DestroyedLiteral;
 
 /**
  *
@@ -42,7 +44,7 @@ public class auth extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet auth</title>");            
+            out.println("<title>Servlet auth</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet auth at " + request.getContextPath() + "</h1>");
@@ -76,102 +78,102 @@ public class auth extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-         throws ServletException, IOException {
+            throws ServletException, IOException {
 
-     try {
-         
-                    
+        try {
 
-        String operation = request.getParameter("operation");
-        
-        
-        
-        if(operation.equals("connecter")){
-            
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
-            String req ="select * from personne where email ='"+email+"' and password ='"+password+"'";
-            ResultSet r = connexion.Seconnecter().createStatement().executeQuery(req);
-            
-            System.out.println(req);
-            
-            if(r.next()){
-                request.getSession().setAttribute("nom", r.getObject(2));
-                request.getSession().setAttribute("prenom", r.getObject(3));
-                request.getRequestDispatcher("/Profile/Profile.jsp").forward(request, response);
+            String operation = request.getParameter("operation");
 
+            if (operation.equals("connecter")) {
                 
-            }
-            else {
-               request.setAttribute("message","Erreur: Erreur De Login Ou Password");
-               request.getRequestDispatcher("/Login/Login.jsp").forward(request, response);
-            }
-            
-            
-        }
-        
-        
-        
-        
-        
-        
-        
-         if(operation.equals("register")){
+                HttpSession s = request.getSession();
+                
+                String email = request.getParameter("email");
+                String password = request.getParameter("password");
+                String req = "select * from personne where email ='" + email + "' and password ='" + password + "'";
+                ResultSet r = connexion.Seconnecter().createStatement().executeQuery(req);
 
-             String nom = request.getParameter("nom");
-             String prenom = request.getParameter("prenom");
-             String dd = request.getParameter("datenaissance");
-            
-             String adresse = request.getParameter("adresse");
-             String ville = request.getParameter("ville");
-             String tel = request.getParameter("tel");
-             String professions = request.getParameter("professions");
-             String experience = request.getParameter("experience");
-             String bio = request.getParameter("bio");
-             String email = request.getParameter("email");
-             String password = request.getParameter("password");
-             
+                System.out.println(req);
+
+                if (r.next()) {
+                    s.setAttribute("nom", r.getObject(2));
+                    s.setAttribute("prenom", r.getObject(3));
+                   // request.getRequestDispatcher("Profile/Profile.jsp").forward(request, response);
                
-               
-             if(nom.isEmpty() || prenom.isEmpty() || adresse.isEmpty() || ville.isEmpty() || tel.isEmpty() || 
-                 professions.isEmpty() || experience.isEmpty() || bio.isEmpty() || email.isEmpty() || password.isEmpty() )
-             {
-                request.setAttribute("message", "Erreur d'inscription: Veuillez remplir les champs vides.");
-                request.getRequestDispatcher("/Register/Register.jsp").forward(request, response);
+                       response.sendRedirect("Profile/Profile.jsp");
+                   
+                } else {
+                    request.setAttribute("message", "Erreur: Erreur De Login Ou Password");
+                    request.getRequestDispatcher("Login/Login.jsp").forward(request, response);
+                }
+            }
 
-             }
-             else{
-                 
-                  Date datenaissance = new SimpleDateFormat("yyyy-mm-dd").parse(dd);
-                  int age = (new Date().getYear()+1900) - (datenaissance.getYear()+1900);
+            if(operation.equals("Se Deconnecter")){
+                request.getSession().invalidate();
+                        response.sendRedirect("Login/Login.jsp");
 
-                 String req = "insert into personne values(ID_PERSONNE.nextval,'"+nom+"','"+prenom+"',"+age+",'"+bio+"','"+adresse+"','"+ville+"','"
-                     +tel+"','"+email+"','"+password+"',"+experience+",'"+professions+"')"   ;
-                 
-                 int r = connexion.Seconnecter().createStatement().executeUpdate(req);
-                 
-                 System.out.println("hadi hiya RRRRRRRRR"+r);
+            }
+            
+            
+            
+            
+            
+            
+            
+            if (operation.equals("register")) {
 
-                 if(r!=0){
-                     request.getRequestDispatcher("/Login/Login.jsp").forward(request, response);
+                String nom = request.getParameter("nom");
+                String prenom = request.getParameter("prenom");
+                String dd = request.getParameter("datenaissance");
 
-                 }
-                 else{
+                String adresse = request.getParameter("adresse");
+                String ville = request.getParameter("ville");
+                String tel = request.getParameter("tel");
+                String professions = request.getParameter("professions");
+                String experience = request.getParameter("experience");
+                String bio = request.getParameter("bio");
+                String email = request.getParameter("email");
+                String password = request.getParameter("password");
+
+                if (nom.isEmpty() || prenom.isEmpty() || adresse.isEmpty() || ville.isEmpty() || tel.isEmpty()
+                        || professions.isEmpty() || experience.isEmpty() || bio.isEmpty() || email.isEmpty() || password.isEmpty() || dd.isEmpty()) {
+                    request.setAttribute("message", "Erreur d'inscription: Veuillez remplir les champs vides.");
                     request.getRequestDispatcher("/Register/Register.jsp").forward(request, response);
-                    request.setAttribute("message", "Erreur d'inscription: Veuillez réessayer ultérieurement.");
-                 }
-             }
-         }
+
+                } else {
+
+                    Date datenaissance = new SimpleDateFormat("yyyy-mm-dd").parse(dd);
+                    int age = (new Date().getYear() + 1900) - (datenaissance.getYear() + 1900);
+
+                    if (age >= 18) {
+                        String req = "insert into personne values(ID_PERSONNE.nextval,'" + nom + "','" + prenom + "'," + age + ",'" + bio + "','" + adresse + "','" + ville + "','"
+                                + tel + "','" + email + "','" + password + "','" + experience + "','" + professions + "')";
+
+                        int r = connexion.Seconnecter().createStatement().executeUpdate(req);
+
+                        if (r != 0) {
+                            //request.getRequestDispatcher("/Login/Login.jsp").forward(request, response);
+                            response.sendRedirect("Login/Login.jsp");
 
 
+                        } else {
+                            request.setAttribute("message", "Erreur d'inscription: Veuillez réessayer ultérieurement.");
+                            request.getRequestDispatcher("/Register/Register.jsp").forward(request, response);
+                        }
+                    } else {
+                        request.setAttribute("message", "Erreur : Désolé, vous n'avez pas l'âge légal.");
+                        request.getRequestDispatcher("/Register/Register.jsp").forward(request, response);
+                    }
 
+                }
+            }
 
-     } catch (SQLException ex) {
-         Logger.getLogger(auth.class.getName()).log(Level.SEVERE, null, ex);
-     } catch (ParseException ex) {
-         Logger.getLogger(auth.class.getName()).log(Level.SEVERE, null, ex);
-     }
- }
+        } catch (SQLException | ParseException ex) {
+            Logger.getLogger(auth.class.getName()).log(Level.SEVERE, null, ex);
+            request.getRequestDispatcher("/Register/Register.jsp").forward(request, response);
+            request.setAttribute("message", "Erreur : veuillez vérifier vos informations");
+        }
+    }
 
     /**
      * Returns a short description of the servlet.

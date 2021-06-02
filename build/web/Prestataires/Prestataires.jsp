@@ -52,8 +52,17 @@
           <li><a href="${pageContext.request.contextPath}/index.jsp">Acceuil</a></li>
           <li><a href="${pageContext.request.contextPath}/About/About.jsp">Qui sommes-nous ?</a></li>
           <li><a href="${pageContext.request.contextPath}/Prestataires/Prestataires.jsp" id="active-tab">Prestataires</a></li>
-          <li><a href="${pageContext.request.contextPath}/Login/Login.jsp">Connexion</a></li>
-          <li><a href="${pageContext.request.contextPath}/Register/Register.jsp">Inscription</a></li>
+                <%
+                            if (session.getAttribute("nom") != null) {%>
+                    <li><a href="${pageContext.request.contextPath}/Profile/Profile.jsp">Mon Profil</a></li>
+                    <li>  <form method="POST" action="../auth">
+                            <input type="submit" value="Se Deconnecter" name="operation" class="linkish" style=" background-color: transparent; border: 0; color: whitesmoke; cursor: pointer;
+                                   display: inline;  outline: none;  font-weight: 100;  text-transform: uppercase; "/> </form></li>
+
+                    <%   } else {%>
+                    <li><a href="${pageContext.request.contextPath}/Login/Login.jsp">Connexion</a></li>
+                    <li><a href="${pageContext.request.contextPath}/Register/Register.jsp">Inscription</a></li>
+                        <% }                        %>
         </ul>
       </nav>
     </header>
