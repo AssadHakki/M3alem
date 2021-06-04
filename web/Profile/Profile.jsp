@@ -79,42 +79,52 @@
 
         <!-- content begin -->
 
-        <div>
+      
 
+        <div class="first-card">
+            <div class="left-side">
             <%
                 if (session.getAttribute("nom") != null) {
-                    out.print("<p style='text-transform:uppercase '>" +"Bonjour ya  "+ session.getAttribute("nom")+" "+ session.getAttribute("prenom") +" ya wld l9ahba"+"</p>");
+                    out.print("<h2>" + session.getAttribute("nom") + " " + session.getAttribute("prenom") + "</h2>");
+                    out.print("<p><span style='text-transform: capitalize;'>" + session.getAttribute("ville") + "</span>, " + session.getAttribute("age") + " ans. </p>"    );
+                    out.print("<p> Profession : <span>" + session.getAttribute("profession") + ".</span> </p>");
+                    out.print("<p> Experience : <span>" + session.getAttribute("experience") + ".</span> </p>");
                 }
             %>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-
-            xxxxxxxxx <br>
-            xxxxxxxxx <br>
-            xxxxxxxxx <br>
-            xxxxxxxxx <br>
-            xxxxxxxxx <br>
-            xxxxxxxxx <br>
-            xxxxxxxxx <br>
-            xxxxxxxxx <br>
-            xxxxxxxxx <br>
-            xxxxxxxxx <br>
-            xxxxxxxxx <br>
-            xxxxxxxxx <br>
-            xxxxxxxxx <br>
-            xxxxxxxxx <br>
-            xxxxxxxxx <br>
-            xxxxxxxxx <br>
-            xxxxxxxxx <br>
-            xxxxxxxxx <br>
-            xxxxxxxxx <br>
-            xxxxxxxxx <br>
-
+            </div>
+            <img src="${pageContext.request.contextPath}/Assets/Images/pdp.png" alt="" >
         </div>
 
+
+
+        <div class="second-card">
+            <div class="xx-side">
+                <h2>À PROPOS DE MOI :</h2>
+                   <% 
+                       out.print("<p>" + session.getAttribute("bio") + "</p>");
+                   %>
+            </div>
+        </div>
+
+
+        <div class="third-card">
+            <div class="xx-side">
+                <h2>CONTACTEZ - MOI :</h2>
+                <p>
+                    <i class="fa fa-phone" aria-hidden="true"> &nbsp; &nbsp;</i> 
+                     <% 
+                       out.print("<span>" + session.getAttribute("tel") + "  </span>");
+                   %>
+                </p>
+                <p>
+                    <i class="fa fa-envelope" aria-hidden="true"> &nbsp; &nbsp;</i> 
+                     <% 
+                       out.print("<span>" + session.getAttribute("email") + "  </span>");
+                   %>  
+                </p>
+
+            </div>
+        </div>
 
         <!-- content end -->
 

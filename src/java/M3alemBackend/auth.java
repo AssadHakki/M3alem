@@ -76,6 +76,17 @@ public class auth extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    private boolean isEmailExist(String email) {
+
+        try {
+            return connexion.Seconnecter().createStatement().executeQuery("select email from personne where email='" + email + "'").next();
+        } catch (SQLException ex) {
+            Logger.getLogger(auth.class.getName()).log(Level.SEVERE, null, ex);
+            return true;
+
+        }
+    }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -85,41 +96,44 @@ public class auth extends HttpServlet {
             String operation = request.getParameter("operation");
 
             if (operation.equals("connecter")) {
-                
+
                 HttpSession s = request.getSession();
-                
+
                 String email = request.getParameter("email");
                 String password = request.getParameter("password");
-                String req = "select * from personne where email ='" + email + "' and password ='" + password + "'";
+                String req = "select * from personne natural join profession where email ='" + email + "' and password ='" + password + "'";
                 ResultSet r = connexion.Seconnecter().createStatement().executeQuery(req);
 
                 System.out.println(req);
 
                 if (r.next()) {
-                    s.setAttribute("nom", r.getObject(2));
-                    s.setAttribute("prenom", r.getObject(3));
-                   // request.getRequestDispatcher("Profile/Profile.jsp").forward(request, response);
-               
-                       response.sendRedirect("Profile/Profile.jsp");
-                   
+                    s.setAttribute("nom", r.getObject(3));
+                    s.setAttribute("prenom", r.getObject(4));
+                    s.setAttribute("age", r.getObject(5));
+                    s.setAttribute("bio", r.getObject(6));
+                    s.setAttribute("ville", r.getObject(8));
+                    s.setAttribute("tel", r.getObject(9));
+                    s.setAttribute("email", r.getObject(10));
+                    s.setAttribute("experience", r.getObject(12));
+                    s.setAttribute("profession", r.getObject(13));
+
+                    
+                    // request.getRequestDispatcher("Profile/Profile.jsp").forward(request, response);
+
+                    response.sendRedirect("Profile/Profile.jsp");
+
                 } else {
                     request.setAttribute("message", "Erreur: Erreur De Login Ou Password");
                     request.getRequestDispatcher("Login/Login.jsp").forward(request, response);
                 }
             }
 
-            if(operation.equals("Se Deconnecter")){
+            if (operation.equals("Se Deconnecter")) {
                 request.getSession().invalidate();
-                        response.sendRedirect("Login/Login.jsp");
+                response.sendRedirect("Login/Login.jsp");
 
             }
-            
-            
-            
-            
-            
-            
-            
+
             if (operation.equals("register")) {
 
                 String nom = request.getParameter("nom");
@@ -135,8 +149,11 @@ public class auth extends HttpServlet {
                 String email = request.getParameter("email");
                 String password = request.getParameter("password");
 
+                if(bio.isEmpty())
+                    bio="Je nai pas encore écrit ma petite biographie !";
+                
                 if (nom.isEmpty() || prenom.isEmpty() || adresse.isEmpty() || ville.isEmpty() || tel.isEmpty()
-                        || professions.isEmpty() || experience.isEmpty() || bio.isEmpty() || email.isEmpty() || password.isEmpty() || dd.isEmpty()) {
+                        || professions.isEmpty() || experience.isEmpty() || email.isEmpty() || password.isEmpty() || dd.isEmpty()) {
                     request.setAttribute("message", "Erreur d'inscription: Veuillez remplir les champs vides.");
                     request.getRequestDispatcher("/Register/Register.jsp").forward(request, response);
 
@@ -146,6 +163,14 @@ public class auth extends HttpServlet {
                     int age = (new Date().getYear() + 1900) - (datenaissance.getYear() + 1900);
 
                     if (age >= 18) {
+                        if(isEmailExist(email)){
+                            
+                            request.setAttribute("message", "Erreur d'inscription: Email déja existe.");
+                            request.getRequestDispatcher("Register/Register.jsp").forward(request, response);
+
+                            return;
+                        }
+                        
                         String req = "insert into personne values(ID_PERSONNE.nextval,'" + nom + "','" + prenom + "'," + age + ",'" + bio + "','" + adresse + "','" + ville + "','"
                                 + tel + "','" + email + "','" + password + "','" + experience + "','" + professions + "')";
 
@@ -154,7 +179,6 @@ public class auth extends HttpServlet {
                         if (r != 0) {
                             //request.getRequestDispatcher("/Login/Login.jsp").forward(request, response);
                             response.sendRedirect("Login/Login.jsp");
-
 
                         } else {
                             request.setAttribute("message", "Erreur d'inscription: Veuillez réessayer ultérieurement.");

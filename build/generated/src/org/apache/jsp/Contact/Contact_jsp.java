@@ -1,10 +1,10 @@
-package org.apache.jsp.Login;
+package org.apache.jsp.Contact;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 
-public final class Login_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class Contact_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -41,14 +41,6 @@ public final class Login_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-      out.write('\n');
-      out.write('\n');
-
-    if (session.getAttribute("nom") != null) {
-        response.sendRedirect("./../index.jsp");
-
-    }
-      out.write("\n");
       out.write("\n");
       out.write("\n");
       out.write("\n");
@@ -58,16 +50,13 @@ public final class Login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <meta charset=\"UTF-8\">\n");
       out.write("    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n");
       out.write("    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n");
-      out.write("    <link rel=\"icon\" href=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/Assets/Images/M3alem-icon.png\">\n");
-      out.write("\n");
-      out.write("    <title>Connexion</title>\n");
+      out.write("    <link rel=\"icon\" href=\"./../Assets/Images/M3alem-icon.png\">\n");
+      out.write("    <title>Contactez nous</title>\n");
       out.write("\n");
       out.write("    <!-- Style -->\n");
       out.write("    <link rel=\"stylesheet\" href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/Login/Login.css\">\n");
+      out.write("/Contact/Contact.css\">\n");
       out.write("\n");
       out.write("    <!-- Google font  -->\n");
       out.write("    <link href=\"https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap\" rel=\"stylesheet\">\n");
@@ -111,12 +100,14 @@ public final class Login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("          <li><a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("/Prestataires/Prestataires.jsp\">Prestataires</a></li>\n");
-      out.write("            ");
+      out.write("               ");
 
                             if (session.getAttribute("nom") != null) {
       out.write("\n");
-      out.write("\n");
-      out.write("                    <li>  <form method=\"POST\" action=\"auth\">\n");
+      out.write("                    <li><a href=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/Profile/Profile.jsp\">Mon Profil</a></li>\n");
+      out.write("                    <li>  <form method=\"POST\" action=\"../auth\">\n");
       out.write("                            <input type=\"submit\" value=\"Se Deconnecter\" name=\"operation\" class=\"linkish\" style=\" background-color: transparent; border: 0; color: whitesmoke; cursor: pointer;\n");
       out.write("                                   display: inline;  outline: none;  font-weight: 100;  text-transform: uppercase; \"/> </form></li>\n");
       out.write("\n");
@@ -125,7 +116,7 @@ public final class Login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("                    <li><a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/Login/Login.jsp\" id=\"active-tab\">Connexion</a></li>\n");
+      out.write("/Login/Login.jsp\" >Connexion</a></li>\n");
       out.write("                    <li><a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("/Register/Register.jsp\">Inscription</a></li>\n");
@@ -140,48 +131,35 @@ public final class Login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("    <div class=\"fcf-body\">\n");
-      out.write("        \n");
       out.write("        <div id=\"fcf-form\">\n");
-      out.write("        <center><img class=\"login-hero\" src=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/Assets/Images/about-hero.png\" ></center>\n");
-      out.write("        \n");
-      out.write("        <div class=\"separator\"></div>\n");
+      out.write("        <h2 class=\"fcf-h3\">CONTACTEZ NOUS</h2>\n");
       out.write("\n");
-      out.write("        <form id=\"fcf-form-id\" class=\"fcf-form-class\" method=\"post\" action=\"../auth\">\n");
+      out.write("        <form id=\"fcf-form-id\" class=\"fcf-form-class\" method=\"post\" action=\"\">\n");
       out.write("            \n");
-      out.write("            ");
-  
-                        if(request.getAttribute("message")!=null)
-                            out.print("<p style='color: red '>"+request.getAttribute("message")+"</p>");                       
-                    
-      out.write("\n");
       out.write("            <div class=\"fcf-form-group\">\n");
+      out.write("                <label for=\"Name\" class=\"fcf-label\">Votre nom : </label>\n");
       out.write("                <div class=\"fcf-input-group\">\n");
-      out.write("                    <input type=\"email\" id=\"Email\" name=\"email\" class=\"fcf-form-control\" placeholder=\"Email\" required>\n");
+      out.write("                    <input type=\"text\" id=\"Name\" name=\"Name\" class=\"fcf-form-control\" required>\n");
       out.write("                </div>\n");
       out.write("            </div>\n");
       out.write("\n");
       out.write("            <div class=\"fcf-form-group\">\n");
+      out.write("                <label for=\"Email\" class=\"fcf-label\">Votre email :</label>\n");
       out.write("                <div class=\"fcf-input-group\">\n");
-      out.write("                    <input type=\"password\" id=\"password\" name=\"password\" class=\"fcf-form-control\" placeholder=\"Mot de passe\" required>\n");
+      out.write("                    <input type=\"email\" id=\"Email\" name=\"Email\" class=\"fcf-form-control\" required>\n");
       out.write("                </div>\n");
       out.write("            </div>\n");
-      out.write("            \n");
+      out.write("\n");
       out.write("            <div class=\"fcf-form-group\">\n");
-      out.write("                <button type=\"submit\" id=\"fcf-button\" name=\"operation\" value=\"connecter\" class=\"fcf-btn fcf-btn-primary fcf-btn-lg fcf-btn-block\">SE CONNECTER</button>\n");
+      out.write("                <label for=\"Message\" class=\"fcf-label\">Votre message :</label>\n");
+      out.write("                <div class=\"fcf-input-group\">\n");
+      out.write("                    <textarea id=\"Message\" name=\"Message\" class=\"fcf-form-control\" rows=\"6\" maxlength=\"3000\" required></textarea>\n");
+      out.write("                </div>\n");
       out.write("            </div>\n");
       out.write("\n");
       out.write("            <div class=\"fcf-form-group\">\n");
-      out.write("              <a id=\"fcf-button\" class=\"fcf-btn fcf-btn-primary fcf-btn-lg fcf-btn-block\" href=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/Register/Register.jsp\">S'INSCRIRE</a>\n");
-      out.write("          </div>\n");
-      out.write("\n");
-      out.write("            <a class=\"forgotten-btn\" href=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/Contact/Contact.jsp\">Mot de passe oublié ?</a>\n");
-      out.write("\n");
+      out.write("                <button type=\"submit\" id=\"fcf-button\" class=\"fcf-btn fcf-btn-primary fcf-btn-lg fcf-btn-block\">Envoyer le message</button>\n");
+      out.write("            </div>\n");
       out.write("        </form>\n");
       out.write("        </div>\n");
       out.write("    </div>\n");
@@ -202,7 +180,7 @@ public final class Login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <div class=\"footer-top-items\">\n");
       out.write("          <h2>LIENS UTILES</h2>\n");
       out.write("          <ul>\n");
-      out.write("            <li><a href=\"");
+      out.write("           <li><a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("/index.jsp\">Acceuil</a></li>\n");
       out.write("            <li><a href=\"");
@@ -234,7 +212,7 @@ public final class Login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<!-- FOOTER END -->\n");
       out.write("\n");
       out.write("</body>\n");
-      out.write("</html>");
+      out.write("</html>\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

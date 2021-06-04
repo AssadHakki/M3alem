@@ -105,7 +105,9 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
 
                             if (session.getAttribute("nom") != null) {
       out.write("\n");
-      out.write("\n");
+      out.write("                    <li><a href=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/Profile/Profile.jsp\">Mon Profil</a></li>\n");
       out.write("                    <li>  <form method=\"POST\" action=\"auth\">\n");
       out.write("                            <input type=\"submit\" value=\"Se Deconnecter\" name=\"operation\" class=\"linkish\" style=\" background-color: transparent; border: 0; color: whitesmoke; cursor: pointer;\n");
       out.write("                                   display: inline;  outline: none;  font-weight: 100;  text-transform: uppercase; \"/> </form></li>\n");

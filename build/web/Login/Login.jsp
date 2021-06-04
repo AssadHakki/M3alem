@@ -59,10 +59,10 @@
           <li><a href="${pageContext.request.contextPath}/Prestataires/Prestataires.jsp">Prestataires</a></li>
             <%
                             if (session.getAttribute("nom") != null) {%>
-
+//style=" background-color: transparent; border: 0; color: whitesmoke; cursor: pointer;
+                                   display: inline;  outline: none;  font-weight: 100;  text-transform: uppercase; "
                     <li>  <form method="POST" action="auth">
-                            <input type="submit" value="Se Deconnecter" name="operation" class="linkish" style=" background-color: transparent; border: 0; color: whitesmoke; cursor: pointer;
-                                   display: inline;  outline: none;  font-weight: 100;  text-transform: uppercase; "/> </form></li>
+                            <input type="submit" value="Se Deconnecter" name="operation" class="linkish" /> </form></li>
 
                     <%   } else {%>
                     <li><a href="${pageContext.request.contextPath}/Login/Login.jsp" id="active-tab">Connexion</a></li>
