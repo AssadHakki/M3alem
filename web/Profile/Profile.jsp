@@ -76,60 +76,113 @@
 
 
 
+        <!-- CONTENT BEGIN -->
 
-        <!-- content begin -->
 
-      
+        <div class="crd-container">
+            <div class="left-card">
+                <img src="./../Assets/Images/pdp.png"> 
+                <%                    out.print("<h2 style='text-transform: uppercase;'>" + session.getAttribute("nom") + " " + session.getAttribute("prenom") + "</h2>");
+                    out.print("<p>" + session.getAttribute("age") + "</p>");
+                %>
 
-        <div class="first-card">
-            <div class="left-side">
-            <%
-                if (session.getAttribute("nom") != null) {
-                    out.print("<h2>" + session.getAttribute("nom") + " " + session.getAttribute("prenom") + "</h2>");
-                    out.print("<p><span style='text-transform: capitalize;'>" + session.getAttribute("ville") + "</span>, " + session.getAttribute("age") + " ans. </p>"    );
-                    out.print("<p> Profession : <span>" + session.getAttribute("profession") + ".</span> </p>");
-                    out.print("<p> Experience : <span>" + session.getAttribute("experience") + ".</span> </p>");
-                }
-            %>
+                <h2>PROFESSION</h2>
+                <% out.print("<p>" + session.getAttribute("profession") + "</p>"); %>
+
+                <h2>EXPERIENCE</h2>
+                <% out.print("<p>" + session.getAttribute("experience") + "</p>"); %>
+
+                <h2>A PROPOS</h2>
+                <% out.print("<p>" + session.getAttribute("bio") + "</p>"); %>
+
+                <h2>ADRESSE</h2>
+                <% out.print("<p>" + session.getAttribute("adresse") + "</p>"); %>
+                <% out.print("<p style='text-transform: capitalize;'>" + session.getAttribute("ville") + "</p>"); %>
+
+                <h2>TELEPHONE</h2>
+                <% out.print("<p>" + session.getAttribute("tel") + "</p>"); %>
+
+                <h2>E-MAIL</h2>
+                <% out.print("<p style='text-transform: uppercase;'>" + session.getAttribute("email") + "</p>"); %>
             </div>
-            <img src="${pageContext.request.contextPath}/Assets/Images/pdp.png" alt="" >
+
+            <form action="">    
+                <div class="right-card">
+
+                    <div class="row-card">
+                        <div class="inside-row">
+                            <label>Nom :</label> <br>
+                            <input type="text" name="nom" value="<%out.print(request.getSession().getAttribute("nom"));%>">  
+                        </div>
+                        <div class="inside-row">
+                            <label>Prenom :</label> <br>
+                            <input type="text" name="prenom" value="<%out.print(request.getSession().getAttribute("prenom"));%>">
+                        </div>
+                    </div>
+
+                    <div class="row-card">
+                        <div class="inside-row">
+                            <label>Date de naissance :</label> <br>
+                            <input type="date" name="datenaissance" value="<%out.print(request.getSession().getAttribute("age"));%>">  
+                        </div>
+                        <div class="inside-row">
+                            <label>A propos de moi :</label> <br>
+                            <input type="text" name="bio" value="<%out.print(request.getSession().getAttribute("bio"));%>">
+                        </div>
+                    </div>
+
+                    <div class="row-card">
+                        <div class="inside-row">
+                            <label>Adresse :</label> <br>
+                            <input type="text" name="adresse" value="<%out.print(request.getSession().getAttribute("adresse"));%>">  
+                        </div>
+                        <div class="inside-row">
+                            <label>Ville :</label> <br>
+                            <input type="text" name="ville" value="<%out.print(request.getSession().getAttribute("ville"));%>">
+                        </div>
+                    </div>
+
+                    <div class="row-card">
+                        <div class="inside-row">
+                            <label>E-mail :</label> <br>
+                            <input type="email" name="email" value="<%out.print(request.getSession().getAttribute("email"));%>">  
+                        </div>
+                        <div class="inside-row">
+                            <label>Téléphone :</label> <br>
+                            <input type="tel" name="tel" value="<%out.print(request.getSession().getAttribute("tel"));%>">
+                        </div>
+                    </div>
+
+
+
+                    <div class="row-card">
+                        <div class="inside-row">
+                            <label>Mot de passe actuel :</label> <br>
+                            <input type="password" name="password"  value="<%out.print(request.getSession().getAttribute("pass"));%>">  
+                        </div>
+                        <div class="inside-row">
+                            <label>Nouveau mot de passe :</label> <br>
+                            <input type="password" name="password"  value="<%out.print(request.getSession().getAttribute("pass"));%>" >  
+                        </div>
+                    </div>
+
+                    <div class="row-card">
+                        <div class="inside-row" id="btnnn">
+                            <button type="submit" name="operation" value="modifier" class="modifier-btn">MODIFIER MES INFORMATIONS</button>
+                        </div>
+                        <div class="inside-row" id="btnnn">
+                            <button type="submit" name="operation" value="supprimer" class="supprimer-btn ">SUPPRIMER MON COMPTE</button>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
         </div>
 
 
 
-        <div class="second-card">
-            <div class="xx-side">
-                <h2>À PROPOS DE MOI :</h2>
-                   <% 
-                       out.print("<p>" + session.getAttribute("bio") + "</p>");
-                   %>
-            </div>
-        </div>
 
-
-        <div class="third-card">
-            <div class="xx-side">
-                <h2>CONTACTEZ - MOI :</h2>
-                <p>
-                    <i class="fa fa-phone" aria-hidden="true"> &nbsp; &nbsp;</i> 
-                     <% 
-                       out.print("<span>" + session.getAttribute("tel") + "  </span>");
-                   %>
-                </p>
-                <p>
-                    <i class="fa fa-envelope" aria-hidden="true"> &nbsp; &nbsp;</i> 
-                     <% 
-                       out.print("<span>" + session.getAttribute("email") + "  </span>");
-                   %>  
-                </p>
-
-            </div>
-        </div>
-
-        <!-- content end -->
-
-
-
+        <!-- CONTENT END -->
 
 
 

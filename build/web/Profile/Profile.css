@@ -186,79 +186,99 @@ footer{
 /* CONTENT BEGIN */
 
 
-.first-card{
+.crd-container{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap-reverse;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 50px;
+}
+
+.left-card{
     background-color: #244e86;
-    color: whitesmoke;
-    height: fit-content;
-    max-width: 800px;
-    width: 80%;
-    margin: 50px auto;
+    text-align: center;
+    min-height: 750px;
+    max-width: 400px;
+    padding: 10px 20px;
+    margin: 50px 10px;
     border-radius: 8px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+
 }
-.first-card img{
+.left-card img{
     width: 160px;
-    margin: 40px;
 }
-.left-side{
-    padding: 0 50px;
-    min-width: auto;
+.left-card h2{
+    color: #fffb7f;
+    font-weight: 300;
+    margin: 20px 0 -15px;
+}
+.left-card p{
+    color: whitesmoke;
     font-weight: 100;
 }
-.second-card, .third-card{
+.right-card{
     display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    flex-wrap: wrap-reverse;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
     background-color: #244e86;
-    color: whitesmoke;
-    height: fit-content;
-    max-width: 800px;
-    width: 80%;
-    margin: 0 auto 50px;
-    padding: 15px 0;
+    min-height: 750px;
+    width: auto;
+    padding: 50px 20px;
+    margin: 50px 10px;
     border-radius: 8px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
-.xx-side{
-    padding: 0 50px;
-    min-width: auto;
-    font-weight: 100;
+
+.row-card{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: fit-content;
+    justify-content: center;
 }
-.first-card h2, .second-card h2, .third-card h2{
+
+.inside-row{
     color: #fffb7f;
-    margin-bottom: 35px;
-    font-weight: 400;
+    font-weight: 100;
+    text-align: left;
+    width: 220px;
+    margin: 25px;
+}
+.inside-row input{
+    width: 220px;
+    height: 45px;
+    border: 1px #fffb7f solid;
+    border-radius: 8px;
+    margin-top: 5px;
+}
+.row-card button{
+    width: 220px;
+    height: 45px;
+    text-transform: uppercase;
+    border: #fffb7f 1px solid;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.modifier-btn{
+    background-color: #4fe0ac;
+    color: #092c5c;
+}
+.supprimer-btn{
+    background-color: rgb(199 89 89);
+    color: #fffb7f;
+}
+#btnnn{
+    margin-top: 20px;
+
+}
+.modifier-btn:hover{
+    background-color: #46cb9b;
 }
 
-
-@media (max-width:694px){
-    .first-card{
-        flex-direction: column-reverse;
-        justify-content: center;
-        padding: 10px;
-    }
-    .first-card img{
-        margin: 0 0 10px 0;
-        padding: 20px;
-        width: 160px;
-    }
-    .left-side{
-        text-align: center;
-        padding: 0;
-        min-width: none;    
-    }
-    .xx-side{
-        padding: 0 30px;
-        min-width: none;    
-    }
+.supprimer-btn:hover{
+    background-color: rgb(176 61 61);
 }
-
 
 /* CONTENT END */

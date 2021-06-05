@@ -1,10 +1,10 @@
-package org.apache.jsp.Profile;
+package org.apache.jsp.SeeMore;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 
-public final class Profile_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class SeeMore_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -41,13 +41,6 @@ public final class Profile_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-      out.write('\n');
-
-    if (session.getAttribute("nom") == null) {
-        request.setAttribute("message", "Vous devez d'abord vous connecter avant d'essayer de rejoindre votre profil");
-        response.sendRedirect("./../Login/Login.jsp");
-
-    }
       out.write("\n");
       out.write("\n");
       out.write("\n");
@@ -60,7 +53,7 @@ public final class Profile_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <link rel=\"icon\" href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("/Assets/Images/M3alem-icon.png\">\n");
-      out.write("        <title>Profil</title>\n");
+      out.write("        <title>Prestataire</title>\n");
       out.write("\n");
       out.write("        <!-- Style -->\n");
       out.write("        <link rel=\"stylesheet\" href=\"");
@@ -108,17 +101,18 @@ public final class Profile_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("/About/About.jsp\">Qui sommes-nous ?</a></li>\n");
       out.write("                    <li><a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/Prestataires/Prestataires.jsp\">Prestataires</a></li>\n");
+      out.write("/Prestataires/Prestataires.jsp\" id=\"active-tab\">Prestataires</a></li>\n");
       out.write("                        ");
 
                             if (session.getAttribute("nom") != null) {
       out.write("\n");
       out.write("                    <li><a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/Profile/Profile.jsp\" id=\"active-tab\">Mon Profil</a></li>\n");
+      out.write("/Profile/Profile.jsp\" >Mon Profil</a></li>\n");
       out.write("                    <li>  <form method=\"POST\" action=\"../auth\">\n");
       out.write("                            <input type=\"submit\" value=\"Se Deconnecter\" name=\"operation\" class=\"linkish\" style=\" background-color: transparent; border: 0; color: whitesmoke; cursor: pointer;\n");
-      out.write("                                   display: inline;  outline: none;  font-weight: 100;  text-transform: uppercase; \"/> </form></li>\n");
+      out.write("                                   display: inline;  outline: none;  font-weight: 100;  text-transform: uppercase; \"/> \n");
+      out.write("                            </form></li>\n");
       out.write("\n");
       out.write("                    ");
    } else {
@@ -143,170 +137,61 @@ public final class Profile_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("        ");
+      out.write("        <!-- content begin -->\n");
+      out.write("        <div class=\"first-card\">\n");
+      out.write("            <div class=\"left-side\">\n");
+      out.write("            ");
 
-
-            out.print("<h2>" + session.getAttribute("nom") + " " + session.getAttribute("prenom") + "</h2>");
-            out.print("<p><span style='text-transform: capitalize;'>" + session.getAttribute("ville") + "</span>, " + session.getAttribute("age") + " ans. </p>");
-            out.print("<p> Profession : <span>" + session.getAttribute("profession") + ".</span> </p>");
-            out.print("<p> Experience : <span>" + session.getAttribute("experience") + ".</span> </p>");
-
-        
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("        <!-- CONTENT BEGIN -->\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("        <div class=\"crd-container\">\n");
-      out.write("            <div class=\"left-card\">\n");
-      out.write("                <img src=\"./../Assets/Images/pdp.png\"> \n");
-      out.write("                ");
                     out.print("<h2 style='text-transform: uppercase;'>" + session.getAttribute("nom") + " " + session.getAttribute("prenom") + "</h2>");
-                    out.print("<p>" + session.getAttribute("age") + "</p>");
+                    out.print("<p><span style='text-transform: capitalize;'>" + session.getAttribute("ville") + "</span>, Né le " + session.getAttribute("age") + ".</p>"    );
+                    out.print("<p> Profession : <span>" + session.getAttribute("profession") + ".</span> </p>");
+                    out.print("<p> Experience : <span>" + session.getAttribute("experience") + ".</span> </p>");
                 
-      out.write("\n");
-      out.write("\n");
-      out.write("                <h2>PROFESSION</h2>\n");
-      out.write("                ");
- out.print("<p>" + session.getAttribute("profession") + "</p>"); 
-      out.write("\n");
-      out.write("\n");
-      out.write("                <h2>EXPERIENCE</h2>\n");
-      out.write("                ");
- out.print("<p>" + session.getAttribute("experience") + "</p>"); 
-      out.write("\n");
-      out.write("\n");
-      out.write("                <h2>A PROPOS</h2>\n");
-      out.write("                ");
- out.print("<p>" + session.getAttribute("bio") + "</p>"); 
-      out.write("\n");
-      out.write("\n");
-      out.write("                <h2>ADRESSE</h2>\n");
-      out.write("                ");
- out.print("<p>" + session.getAttribute("adresse") + "</p>"); 
-      out.write("\n");
-      out.write("                ");
- out.print("<p style='text-transform: capitalize;'>" + session.getAttribute("ville") + "</p>"); 
-      out.write("\n");
-      out.write("\n");
-      out.write("                <h2>TELEPHONE</h2>\n");
-      out.write("                ");
- out.print("<p>" + session.getAttribute("tel") + "</p>"); 
-      out.write("\n");
-      out.write("\n");
-      out.write("                <h2>E-MAIL</h2>\n");
-      out.write("                ");
- out.print("<p style='text-transform: uppercase;'>" + session.getAttribute("email") + "</p>"); 
+            
       out.write("\n");
       out.write("            </div>\n");
-      out.write("\n");
-      out.write("            <form action=\"\">    \n");
-      out.write("                <div class=\"right-card\">\n");
-      out.write("\n");
-      out.write("                    <div class=\"row-card\">\n");
-      out.write("                        <div class=\"inside-row\">\n");
-      out.write("                            <label>Nom :</label> <br>\n");
-      out.write("                            <input type=\"text\" name=\"nom\" value=\"");
-out.print(request.getSession().getAttribute("nom"));
-      out.write("\">  \n");
-      out.write("                        </div>\n");
-      out.write("                        <div class=\"inside-row\">\n");
-      out.write("                            <label>Prenom :</label> <br>\n");
-      out.write("                            <input type=\"text\" name=\"prenom\" value=\"");
-out.print(request.getSession().getAttribute("prenom"));
-      out.write("\">\n");
-      out.write("                        </div>\n");
-      out.write("                    </div>\n");
-      out.write("\n");
-      out.write("                    <div class=\"row-card\">\n");
-      out.write("                        <div class=\"inside-row\">\n");
-      out.write("                            <label>Date de naissance :</label> <br>\n");
-      out.write("                            <input type=\"date\" name=\"datenaissance\" value=\"");
-out.print(request.getSession().getAttribute("age"));
-      out.write("\">  \n");
-      out.write("                        </div>\n");
-      out.write("                        <div class=\"inside-row\">\n");
-      out.write("                            <label>A propos de moi :</label> <br>\n");
-      out.write("                            <input type=\"text\" name=\"bio\" value=\"");
-out.print(request.getSession().getAttribute("bio"));
-      out.write("\">\n");
-      out.write("                        </div>\n");
-      out.write("                    </div>\n");
-      out.write("\n");
-      out.write("                    <div class=\"row-card\">\n");
-      out.write("                        <div class=\"inside-row\">\n");
-      out.write("                            <label>Adresse :</label> <br>\n");
-      out.write("                            <input type=\"text\" name=\"adresse\" value=\"");
-out.print(request.getSession().getAttribute("adresse"));
-      out.write("\">  \n");
-      out.write("                        </div>\n");
-      out.write("                        <div class=\"inside-row\">\n");
-      out.write("                            <label>Ville :</label> <br>\n");
-      out.write("                            <input type=\"text\" name=\"ville\" value=\"");
-out.print(request.getSession().getAttribute("ville"));
-      out.write("\">\n");
-      out.write("                        </div>\n");
-      out.write("                    </div>\n");
-      out.write("\n");
-      out.write("                    <div class=\"row-card\">\n");
-      out.write("                        <div class=\"inside-row\">\n");
-      out.write("                            <label>E-mail :</label> <br>\n");
-      out.write("                            <input type=\"email\" name=\"email\" value=\"");
-out.print(request.getSession().getAttribute("email"));
-      out.write("\">  \n");
-      out.write("                        </div>\n");
-      out.write("                        <div class=\"inside-row\">\n");
-      out.write("                            <label>Téléphone :</label> <br>\n");
-      out.write("                            <input type=\"tel\" name=\"tel\" value=\"");
-out.print(request.getSession().getAttribute("tel"));
-      out.write("\">\n");
-      out.write("                        </div>\n");
-      out.write("                    </div>\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("                    <div class=\"row-card\">\n");
-      out.write("                        <div class=\"inside-row\">\n");
-      out.write("                            <label>Mot de passe actuel :</label> <br>\n");
-      out.write("                            <input type=\"password\" name=\"password\"  value=\"");
-out.print(request.getSession().getAttribute("password"));
-      out.write("\">  \n");
-      out.write("                        </div>\n");
-      out.write("                        <div class=\"inside-row\">\n");
-      out.write("                            <label>Nouveau mot de passe :</label> <br>\n");
-      out.write("                            <input type=\"password\" name=\"password\" >  \n");
-      out.write("                        </div>\n");
-      out.write("                    </div>\n");
-      out.write("\n");
-      out.write("                    <div class=\"row-card\">\n");
-      out.write("                        <div class=\"inside-row\" id=\"btnnn\">\n");
-      out.write("                            <button type=\"submit\" name=\"operation\" value=\"modifier\" class=\"modifier-btn\">MODIFIER MES INFORMATIONS</button>\n");
-      out.write("                        </div>\n");
-      out.write("                        <div class=\"inside-row\" id=\"btnnn\">\n");
-      out.write("                            <button type=\"submit\" name=\"operation\" value=\"supprimer\" class=\"supprimer-btn \">SUPPRIMER MON COMPTE</button>\n");
-      out.write("                        </div>\n");
-      out.write("                    </div>\n");
-      out.write("\n");
-      out.write("                </div>\n");
-      out.write("            </form>\n");
+      out.write("            <img src=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/Assets/Images/pdp.png\" alt=\"\" >\n");
       out.write("        </div>\n");
       out.write("\n");
       out.write("\n");
+      out.write("        <div class=\"second-card\">\n");
+      out.write("            <div class=\"xx-side\">\n");
+      out.write("                <h2>À PROPOS DE MOI :</h2>\n");
+      out.write("                   ");
+ 
+                       out.print("<p style='text-transform: capitalize;'>" + session.getAttribute("bio") + "</p>");
+                   
+      out.write("\n");
+      out.write("            </div>\n");
+      out.write("        </div>\n");
       out.write("\n");
       out.write("\n");
-      out.write("        <!-- CONTENT END -->\n");
+      out.write("        <div class=\"third-card\">\n");
+      out.write("            <div class=\"xx-side\">\n");
+      out.write("                <h2>CONTACTEZ - MOI :</h2>\n");
+      out.write("                <p>\n");
+      out.write("                    <i class=\"fa fa-phone\" aria-hidden=\"true\"> &nbsp; &nbsp;</i> \n");
+      out.write("                     ");
+ 
+                       out.print("<span>" + session.getAttribute("tel") + "  </span>");
+                   
       out.write("\n");
+      out.write("                </p>\n");
+      out.write("                <p>\n");
+      out.write("                    <i class=\"fa fa-envelope\" aria-hidden=\"true\"> &nbsp; &nbsp;</i> \n");
+      out.write("                     ");
+ 
+                       out.print("<span style='text-transform: capitalize;'>" + session.getAttribute("email") + "  </span>");
+                   
+      out.write("  \n");
+      out.write("                </p>\n");
       out.write("\n");
+      out.write("            </div>\n");
+      out.write("        </div>\n");
       out.write("\n");
-      out.write("\n");
+      out.write("        <!-- content end -->\n");
       out.write("\n");
       out.write("\n");
       out.write("\n");

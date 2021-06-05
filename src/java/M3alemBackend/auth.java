@@ -111,15 +111,15 @@ public class auth extends HttpServlet {
                     s.setAttribute("prenom", r.getObject(4));
                     s.setAttribute("age", r.getObject(5));
                     s.setAttribute("bio", r.getObject(6));
+                    s.setAttribute("adresse", r.getObject(7));                    
                     s.setAttribute("ville", r.getObject(8));
                     s.setAttribute("tel", r.getObject(9));
                     s.setAttribute("email", r.getObject(10));
+                    s.setAttribute("pass", r.getObject(11));
                     s.setAttribute("experience", r.getObject(12));
                     s.setAttribute("profession", r.getObject(13));
 
-                    
                     // request.getRequestDispatcher("Profile/Profile.jsp").forward(request, response);
-
                     response.sendRedirect("Profile/Profile.jsp");
 
                 } else {
@@ -139,7 +139,6 @@ public class auth extends HttpServlet {
                 String nom = request.getParameter("nom");
                 String prenom = request.getParameter("prenom");
                 String dd = request.getParameter("datenaissance");
-
                 String adresse = request.getParameter("adresse");
                 String ville = request.getParameter("ville");
                 String tel = request.getParameter("tel");
@@ -149,9 +148,10 @@ public class auth extends HttpServlet {
                 String email = request.getParameter("email");
                 String password = request.getParameter("password");
 
-                if(bio.isEmpty())
-                    bio="Je nai pas encore écrit ma petite biographie !";
-                
+                if (bio.isEmpty()) {
+                    bio = "Je nai pas encore écrit ma petite biographie !";
+                }
+
                 if (nom.isEmpty() || prenom.isEmpty() || adresse.isEmpty() || ville.isEmpty() || tel.isEmpty()
                         || professions.isEmpty() || experience.isEmpty() || email.isEmpty() || password.isEmpty() || dd.isEmpty()) {
                     request.setAttribute("message", "Erreur d'inscription: Veuillez remplir les champs vides.");
@@ -159,21 +159,23 @@ public class auth extends HttpServlet {
 
                 } else {
 
+                    //  calculate age from birth date
                     Date datenaissance = new SimpleDateFormat("yyyy-mm-dd").parse(dd);
                     int age = (new Date().getYear() + 1900) - (datenaissance.getYear() + 1900);
 
                     if (age >= 18) {
-                        if(isEmailExist(email)){
-                            
+                        if (isEmailExist(email)) {
+
                             request.setAttribute("message", "Erreur d'inscription: Email déja existe.");
                             request.getRequestDispatcher("Register/Register.jsp").forward(request, response);
 
                             return;
                         }
-                        
-                        String req = "insert into personne values(ID_PERSONNE.nextval,'" + nom + "','" + prenom + "'," + age + ",'" + bio + "','" + adresse + "','" + ville + "','"
-                                + tel + "','" + email + "','" + password + "','" + experience + "','" + professions + "')";
+                        //to_date('18/5/2012','dd/mm/yyyy')
 
+                        String req = "insert into personne values(ID_PERSONNE.nextval,'" + nom + "','" + prenom + "',to_date('" + dd + "','yyyy-mm-dd'),'" + bio + "','" + adresse + "','"
+                                + ville + "','" + tel + "','" + email + "','" + password + "','" + experience + "','" + professions + "')";
+                        System.out.println(req);
                         int r = connexion.Seconnecter().createStatement().executeUpdate(req);
 
                         if (r != 0) {
