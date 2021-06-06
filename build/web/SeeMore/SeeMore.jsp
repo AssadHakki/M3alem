@@ -15,7 +15,7 @@
         <title>Prestataire</title>
 
         <!-- Style -->
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/Profile/Profile.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/SeeMore/SeeMore.css">
 
         <!-- Google font  -->
         <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
@@ -52,7 +52,7 @@
                         <%
                             if (session.getAttribute("nom") != null) {%>
                     <li><a href="${pageContext.request.contextPath}/Profile/Profile.jsp" >Mon Profil</a></li>
-                    <li>  <form method="POST" action="../auth">
+                    <li>  <form method="POST" action="${pageContext.request.contextPath}/authentification">
                             <input type="submit" value="Se Deconnecter" name="operation" class="linkish" style=" background-color: transparent; border: 0; color: whitesmoke; cursor: pointer;
                                    display: inline;  outline: none;  font-weight: 100;  text-transform: uppercase; "/> 
                             </form></li>

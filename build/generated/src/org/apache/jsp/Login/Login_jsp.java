@@ -44,9 +44,9 @@ public final class Login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write('\n');
       out.write('\n');
 
-    if (session.getAttribute("nom") != null) {
+    if (session.getAttribute("id_personne") != null) {
         response.sendRedirect("./../index.jsp");
-
+        return;
     }
       out.write("\n");
       out.write("\n");
@@ -148,7 +148,10 @@ public final class Login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        \n");
       out.write("        <div class=\"separator\"></div>\n");
       out.write("\n");
-      out.write("        <form id=\"fcf-form-id\" class=\"fcf-form-class\" method=\"post\" action=\"../auth\">\n");
+      out.write("        <form id=\"fcf-form-id\" class=\"fcf-form-class\" method=\"post\" action=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/authentification\">\n");
       out.write("            \n");
       out.write("            ");
   

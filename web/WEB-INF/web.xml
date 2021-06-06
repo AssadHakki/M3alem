@@ -4,9 +4,33 @@
         <servlet-name>auth</servlet-name>
         <servlet-class>M3alemBackend.auth</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MiseAJour</servlet-name>
+        <servlet-class>M3alemBackend.MiseAJour</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>authentification</servlet-name>
+        <servlet-class>M3alemBackend.authentification</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Rechercher</servlet-name>
+        <servlet-class>M3alemBackend.Rechercher</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>auth</servlet-name>
         <url-pattern>/auth</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MiseAJour</servlet-name>
+        <url-pattern>/MiseAJour</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>authentification</servlet-name>
+        <url-pattern>/authentification</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Rechercher</servlet-name>
+        <url-pattern>/Rechercher</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -40,6 +40,7 @@ header{
     margin-bottom: -6px;
     background-color: #092c5c;
     position: relative;
+    box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
 }
 .logo{
     float: left;
@@ -85,7 +86,7 @@ nav ul li a:hover{
     border-radius: 8px;
 }
 
-@media (max-width: 1175px) {
+@media (max-width: 1218px) {
     .toggle-btn{
         display: block;
     }
@@ -198,7 +199,7 @@ footer{
     align-items: center;
     color: whitesmoke;
     margin: 0 0 200px ;
-
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 .search-container h1{
     font-size: 38px;
@@ -310,7 +311,8 @@ footer{
 .use-container{
     text-align: center;
     margin-bottom: 200px;
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;}
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
 .use-container h1{
     background-color: #244e86;
     color: #fbf775;
@@ -353,59 +355,13 @@ footer{
 
 
 
-/* RAPID SEARCH BEGIN */
-.rapid-search-container{
-    text-align: center;
-    margin-bottom: 200px;
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-}
-.rapid-search-header{
-    background-color: #244e86;
-    color: #fbf775;
-}
-.rapid-search-header h1{
-    padding: 15px ;
-    margin: 0;
-    font-weight: 500;
-}
-.rapid-search-cards{
-    background-color: #fbf775;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-.search-card{
-    color: #244e86;
-    text-align: left;
-    padding: 20px;
-    margin: 10px 20px 20px 20px;
-    width: 300px;
-}
-.search-card h2{
-    text-transform: uppercase;
-    font-weight: 400;
-    border-bottom: 1px solid #013f9621;
-}
-.search-card a{
-    text-decoration: none;
-    color: #013f96;
-    font-weight: 100;
-}
-.search-card a:hover{
-    text-decoration: underline;
-    color: #0b4ead;
-}
-/* RAPID SEARCH END */
-
-
 
 
 /* WHAT WILL YOU LIKE BEGIN */
 .like-container{
     text-align: center;
     margin-bottom: 200px;
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 .like-container h1{
     background-color: #244e86;
@@ -427,7 +383,6 @@ footer{
     margin: 15px 20px 0;
     padding: 20px 10px;
     transition: all .2s ease-in-out;
-
 }
 .like-card i{
     font-size: 70px;

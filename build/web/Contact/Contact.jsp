@@ -52,7 +52,7 @@
                <%
                             if (session.getAttribute("nom") != null) {%>
                     <li><a href="${pageContext.request.contextPath}/Profile/Profile.jsp">Mon Profil</a></li>
-                    <li>  <form method="POST" action="../auth">
+                    <li>  <form method="POST" action="../authentification">
                             <input type="submit" value="Se Deconnecter" name="operation" class="linkish" style=" background-color: transparent; border: 0; color: whitesmoke; cursor: pointer;
                                    display: inline;  outline: none;  font-weight: 100;  text-transform: uppercase; "/> </form></li>
 

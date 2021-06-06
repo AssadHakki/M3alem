@@ -4,6 +4,10 @@
     Author     : Blanco
 --%>
 
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="M3alemBackend.connexion"%>
+<%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,7 +59,7 @@
                         <%
                             if (session.getAttribute("nom") != null) {%>
                     <li><a href="${pageContext.request.contextPath}/Profile/Profile.jsp">Mon Profil</a></li>
-                    <li>  <form method="POST" action="../auth">
+                    <li>  <form method="POST" action="${pageContext.request.contextPath}/authentification">
                             <input type="submit" value="Se Deconnecter" name="operation" class="linkish" style=" background-color: transparent; border: 0; color: whitesmoke; cursor: pointer;
                                    display: inline;  outline: none;  font-weight: 100;  text-transform: uppercase; "/> </form></li>
 
@@ -69,85 +73,77 @@
         <!-- HEADER END -->
 
 
+        <form action="${pageContext.request.contextPath}/Rechercher" method="post">
 
-
-        <div class="search-container" >
-            <h1>Trouvez des prestataires autour de vous !</h1>
-            <div class="search-boxes">
-                <div class="search-profession">
-                    <label for="profession"><i class="fa fa-wrench" aria-hidden="true"></i> De quoi avez-vous besoin ? <br></label>
-                    <select name="professions" id="professions">
-                        <option value="bricolage_petits_travaux">Bricolage-Petits travaux</option>
-                        <option value="plomberie">Plomberie</option>
-                        <option value="peinture">Peinture</option>
-                        <option value="electricite">Électricité</option>
-                        <option value="m_bois">Menuiserie de bois</option>
-                        <option value="m_aluminium">Menuiserie d'aluminium</option>
-                        <option value="soudure_chaudronnerie">Soudure-Chaudronnerie</option>
-                        <option value="climatisation_chauffage">Climatisation-Chauffage</option>
-                        <option value="maconnerie">Maçonnerie</option>
-                        <option value="mecanique">Mécanique</option>
-                        <option value="marbre">Marbre</option>
-                        <option value="faience_mosaique">Faience mosaïque</option>
-                        <option value="rideaux_portes_motorises">Rideaux - portes motorisés</option>
-                        <option value="tapisserie">Tapisserie</option>
-                        <option value="jardinier">Jardinier</option>
-                        <option value="entretien_piscine">Entretien piscine</option>
-                        <option value="chauffeur">Chauffeur</option>
-                        <option value="electromenager">Réparation électroménager</option>
-                        <option value="materiels_electroniques">Réparation matériels électroniques</option>
-                        <option value="parabole">Installation parabole</option>
-                        <option value="surveillance">Installation caméra de surveillance</option>
-                    </select>
-                </div>
-                <div class="search-ville">
-                    <label for="ville"><i class="fa fa-map-pin" aria-hidden="true"></i> Où en avez-vous besoin ? <br></label>
-                    <select name="villes" id="villes">
-                        <option value="casablanca">Casablanca</option>
-                        <option value="agadir">Agadir</option>
-                        <option value="tanger">Tanger</option>
-                    </select>
-                </div>
-                <div class="search-btn">
-                    <button id="rechercher" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+            <div class="search-container" >
+                <h1>Trouvez des prestataires autour de vous !</h1>
+                <div class="search-boxes">
+                    <div class="search-profession">
+                        <label for="profession"><i class="fa fa-wrench" aria-hidden="true"></i> De quoi avez-vous besoin ? <br></label>
+                        <select name="profession" id="professions">
+                            <option value="P01">Bricolage et Petits travaux</option>
+                            <option value="P02">Plomberie</option>
+                            <option value="P03">Peinture</option>
+                            <option value="P04">Électricité</option>
+                            <option value="P05">Menuiserie</option>
+                            <option value="P06">Climatisation-Chauffage</option>
+                            <option value="P07">Maçonnerie</option>
+                            <option value="P08">Mécanique</option>
+                            <option value="P09">Femmes de ménages</option>
+                            <option value="P10">Jardinier</option>
+                            <option value="P11">Entretien piscine</option>
+                            <option value="P12">Réparation électroménager</option>
+                            <option value="P13">Réparation matériels électroniques</option>
+                            <option value="P14">Installation parabole</option>
+                        </select>
+                    </div>
+                    <div class="search-ville">
+                        <label for="ville"><i class="fa fa-map-pin" aria-hidden="true"></i> Où en avez-vous besoin ? <br></label>
+                        <select name="ville" id="villes">
+                            <option value="casablanca">Casablanca</option>
+                            <option value="agadir">Agadir</option>
+                            <option value="tanger">Tanger</option>
+                        </select>
+                    </div>
+                    <div class="search-btn">
+                        <button id="rechercher" type="submit" name="search"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </div>
                 </div>
             </div>
-        </div>
 
-
+        </form>
 
         <div class="cards-container">
 
 
-            <div class="first-card">
-                <div class="left-side">
-                    <h2>HAMID DAMIDI</h2>
-                    <p>Casablanca, <span>90 ans</span></p>
-                    <p>Profession : <span>Plomberie</span> </p>
-                    <p>Experience : <span>Entre 5 et 10 ans</span> </p>
-                </div>
-                <img src="${pageContext.request.contextPath}/Assets/Images/pdp.png" alt="" >
-            </div>
-            
-              <div class="first-card">
-                <div class="left-side">
-                    <h2>HAMID DAMIDI</h2>
-                    <p>Casablanca, <span>90 ans</span></p>
-                    <p>Profession : <span>Plomberie</span> </p>
-                    <p>Experience : <span>Entre 5 et 10 ans</span> </p>
-                </div>
-                <img src="${pageContext.request.contextPath}/Assets/Images/pdp.png" alt="" >
-            </div>
-            
-              <div class="first-card">
-                <div class="left-side">
-                    <h2>HAMID DAMIDI</h2>
-                    <p>Casablanca, <span>90 ans</span></p>
-                    <p>Profession : <span>Plomberie</span> </p>
-                    <p>Experience : <span>Entre 5 et 10 ans</span> </p>
-                </div>
-                <img src="${pageContext.request.contextPath}/Assets/Images/pdp.png" alt="" >
-            </div>
+            <%
+                ResultSet R;
+                if (request.getAttribute("result") != null) {
+                    R = (ResultSet) request.getAttribute("result");
+                } else {
+                    R = connexion.Seconnecter().createStatement().executeQuery("select * from personne natural join profession ORDER BY id_personne DESC");
+                }
+
+                while (R.next()) {
+                    String dd = R.getObject(5).toString();
+                    Date datenaissance = new SimpleDateFormat("yyyy-mm-dd").parse(dd);
+                    int age = (new Date().getYear() + 1900) - (datenaissance.getYear() + 1900);
+
+                    out.print(
+                            "<div class='first-card'> "
+                            + "<div class='left-side'>"
+                            + "<h2>" + R.getObject(3) + " " + R.getObject(4) + "</h2>"
+                            + "<p><span style='text-transform: capitalize;'>" + R.getObject(8) + "</span>, " + age + " ans</p>"
+                            + "<p>Profession : <span>" + R.getObject(13) + "</span> </p>"
+                            + "<p>Experience : <span>" + R.getObject(12) + "</span> </p>"
+                            + "</div>"
+                            + "<img src='" + request.getContextPath() + "/Assets/Images/pdp.png' >"
+                            + "</div>"
+                    );
+                }
+
+            %>
+
 
         </div>
 

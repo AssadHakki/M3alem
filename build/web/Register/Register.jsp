@@ -5,8 +5,9 @@
 --%>
 
 <%
-    if (session.getAttribute("nom") != null) {
+    if (session.getAttribute("id_personne") != null) {
         response.sendRedirect("./../index.jsp");
+        return;
     }%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -54,17 +55,8 @@
                     <li><a href="${pageContext.request.contextPath}/index.jsp">Acceuil</a></li>
                     <li><a href="${pageContext.request.contextPath}/About/About.jsp">Qui sommes-nous ?</a></li>
                     <li><a href="${pageContext.request.contextPath}/Prestataires/Prestataires.jsp">Prestataires</a></li>
-                        <%
-                if (session.getAttribute("nom") != null) {%>
-
-                    <li>  <form method="POST" action="auth">
-                            <input type="submit" value="Se Deconnecter" name="operation" class="linkish" style=" background-color: transparent; border: 0; color: whitesmoke; cursor: pointer;
-                                   display: inline;  outline: none;  font-weight: 100;  text-transform: uppercase; "/> </form></li>
-
-                    <%   } else {%>
                     <li><a href="${pageContext.request.contextPath}/Login/Login.jsp" >Connexion</a></li>
                     <li><a href="${pageContext.request.contextPath}/Register/Register.jsp" id="active-tab">Inscription</a></li>
-                        <% }                        %>
                 </ul>
             </nav>
         </header>
@@ -81,72 +73,66 @@
 
             <div class="register-form-hero">
   
-                <form action="../auth" method="POST">
+                <form action="${pageContext.request.contextPath}/authentification" method="POST">
                     
                     <div class="register-form">
-                        <p style="color: red;     margin: 0 0 40px; font-weight: 100;">Les champs marqués d'un * sont obligatoires.</p>
+                        <p style="color: red;   text-align:center; border: 1px solid red; padding: 20px;  margin: 0 0 40px; font-weight: 100;">Les champs marqués d'un * sont obligatoires.</p>
                         <div class="input-form">
-                            <label class="label-text" >* Nom de famille :</label>
+                            <label class="label-text" ><span style="color: red">*</span>  Nom de famille :</label>
                             <input type="text" name="nom">
                         </div>
 
                         <div class="input-form">
-                            <label >* Prénom :</label>
+                            <label ><span style="color: red">*</span>  Prénom :</label>
                             <input type="text" name="prenom">
                         </div>
 
                         <div class="input-form">
-                            <label >* Date de naissance : </label>
+                            <label ><span style="color: red">*</span> Date de naissance : </label>
                             <input type="date" name="datenaissance">
 
                         </div>
 
                         <div class="input-form">
-                            <label >* Adresse :</label>
+                            <label ><span style="color: red">*</span>  Adresse :</label>
                             <textarea name="adresse" rows="3"></textarea>
                         </div>
 
 
                         <div class="input-form">
-                            <label >* Ville :</label>
+                            <label><span style="color: red">*</span>  Ville :</label>
                             <input type="text" name="ville" >
                         </div>
 
                         <div class="input-form">
-                            <label >* Téléphone :</label>
+                            <label><span style="color: red">*</span>  Téléphone :</label>
                             <input type="tel" name="tel">
                         </div>
 
 
 
                         <div class="input-form">
-                            <label>* Professions : </label>
+                            <label><span style="color: red">*</span>  Professions : </label>
                             <select name="professions" id="professions">
-                                <option value="P01">Bricolage-Petits travaux</option>
+                                <option value="P01">Bricolage et Petits travaux</option>
                                 <option value="P02">Plomberie</option>
                                 <option value="P03">Peinture</option>
                                 <option value="P04">Électricité</option>
-                                <option value="P05">Menuiserie de bois</option>
-                                <option value="P06">Menuiserie d'aluminium</option>
-                                <option value="P07">Soudure-Chaudronnerie</option>
-                                <option value="P08">Climatisation-Chauffage</option>
-                                <option value="P09">Maçonnerie</option>
-                                <option value="P10">Mécanique</option>
-                                <option value="P11">Marbre</option>
-                                <option value="P12">Faience mosaïque</option>
-                                <option value="P13">Rideaux - portes motorisés</option>
-                                <option value="P14">Tapisserie</option>
-                                <option value="P15">Jardinier</option>
-                                <option value="P16">Entretien piscine</option>
-                                <option value="P17">Chauffeur</option>
-                                <option value="P18">Réparation électroménager</option>
-                                <option value="P19">Réparation matériels électroniques</option>
-                                <option value="P20">Installation parabole</option>
+                                <option value="P05">Menuiserie</option>
+                                <option value="P06">Climatisation-Chauffage</option>
+                                <option value="P07">Maçonnerie</option>
+                                <option value="P08">Mécanique</option>
+                                <option value="P09">Femmes de ménages</option>
+                                <option value="P10">Jardinier</option>
+                                <option value="P11">Entretien piscine</option>
+                                <option value="P12">Réparation électroménager</option>
+                                <option value="P13">Réparation matériels électroniques</option>
+                                <option value="P14">Installation parabole</option>
                             </select>
                         </div>
 
                         <div  class="input-form">
-                            <label> * Années d'expérience :</label>
+                            <label> &nbsp;&nbsp; Années d'expérience :</label>
                             <select name="experience" id="experience">
                                 <option value="Entre 1 et 3 ans">Entre 1 et 3 ans</option>
                                 <option value="Entre 4 et 7 ans">Entre 4 et 7 ans</option>
@@ -161,18 +147,18 @@
                         </div>
 
                         <div  class="input-form">
-                            <label> * Email :</label>
+                            <label> <span style="color: red">*</span>  Email :</label>
                             <input type="email" name="email" >
                         </div>
 
                         <div  class="input-form">
-                            <label> * Mot de passe :</label>
+                            <label> <span style="color: red">*</span>  Mot de passe :</label>
                             <input type="password" name="password" >
                         </div>
 
                         <%
                             if (request.getAttribute("message") != null) {
-                                out.print("<p style='color: red '>" + request.getAttribute("message") + "</p>");
+                                out.print("<p style='color: red;   text-align:center; border: 1px solid red; padding: 20px;  margin: 20px 0 20px; font-weight: 100;'>" + request.getAttribute("message") + "</p>");
                             }
                           
                         %>

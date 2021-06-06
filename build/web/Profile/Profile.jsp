@@ -4,11 +4,16 @@
     Author     : Blanco
 --%>
 <%
-    if (session.getAttribute("nom") == null) {
+    if (session.getAttribute("id_personne") == null) {
         request.setAttribute("message", "Vous devez d'abord vous connecter avant d'essayer de rejoindre votre profil");
         response.sendRedirect("./../Login/Login.jsp");
-
+        return;
     }%>
+
+
+<%@page import="M3alemBackend.connexion"%>
+<%@page import="java.sql.ResultSet"%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -36,6 +41,37 @@
             var navbar = document.getElementById('nav');
             navbar.classList.toggle('show');
         }
+
+
+        var x;
+        function Confirmer()
+        {
+            if (x.value === "supprimer")
+            {
+                if (window.confirm("Voulez vous vraiment supprimer votre compte ?"))
+                {
+                    return true;
+                } else
+                {
+                    return false;
+                }
+            } else if (x.value === "modifier")
+            {
+                if (window.confirm("Voulez vous vraiment modifier votre compte ?"))
+                {
+                    return true;
+                } else
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
+        function  recuperer_etat(b)
+        {
+            x = b;
+        }
+
     </script>
 
     <body class="background-image">
@@ -58,7 +94,7 @@
                         <%
                             if (session.getAttribute("nom") != null) {%>
                     <li><a href="${pageContext.request.contextPath}/Profile/Profile.jsp" id="active-tab">Mon Profil</a></li>
-                    <li>  <form method="POST" action="../auth">
+                    <li>  <form method="POST" action="${pageContext.request.contextPath}/authentification">
                             <input type="submit" value="Se Deconnecter" name="operation" class="linkish" style=" background-color: transparent; border: 0; color: whitesmoke; cursor: pointer;
                                    display: inline;  outline: none;  font-weight: 100;  text-transform: uppercase; "/> </form></li>
 
@@ -78,78 +114,88 @@
 
         <!-- CONTENT BEGIN -->
 
+        <%
+            String id_personne = request.getSession().getAttribute("id_personne").toString();
+            String req = "select * from personne natural join profession where id_personne =" + id_personne;
+
+            ResultSet r = connexion.Seconnecter().createStatement().executeQuery(req);
+            r.next();
+        %>
 
         <div class="crd-container">
             <div class="left-card">
-                <img src="./../Assets/Images/pdp.png"> 
-                <%                    out.print("<h2 style='text-transform: uppercase;'>" + session.getAttribute("nom") + " " + session.getAttribute("prenom") + "</h2>");
-                    out.print("<p>" + session.getAttribute("age") + "</p>");
-                %>
+                <img src="${pageContext.request.contextPath}/Assets/Images/pdp.png"> 
+                <h2 style='text-transform: uppercase;'> <%= r.getObject(3) + " " + r.getObject(4)%> </h2>
+                <p><%= r.getObject(5)%></p>
+
 
                 <h2>PROFESSION</h2>
-                <% out.print("<p>" + session.getAttribute("profession") + "</p>"); %>
+                <p><%= r.getObject(13)%></p>
 
                 <h2>EXPERIENCE</h2>
-                <% out.print("<p>" + session.getAttribute("experience") + "</p>"); %>
+                <p><%= r.getObject(12)%></p>
 
-                <h2>A PROPOS</h2>
-                <% out.print("<p>" + session.getAttribute("bio") + "</p>"); %>
+                <h2>À PROPOS DE MOI</h2>
+                <p style='text-transform: capitalize;'><%= r.getObject(6)%></p>
 
                 <h2>ADRESSE</h2>
-                <% out.print("<p>" + session.getAttribute("adresse") + "</p>"); %>
-                <% out.print("<p style='text-transform: capitalize;'>" + session.getAttribute("ville") + "</p>"); %>
+                <p style='text-transform: capitalize;'><%= r.getObject(7)%></p>
+                <p style='text-transform: capitalize;'><%= r.getObject(8)%></p>
 
                 <h2>TELEPHONE</h2>
-                <% out.print("<p>" + session.getAttribute("tel") + "</p>"); %>
+                <p><%= r.getObject(9)%></p>
 
                 <h2>E-MAIL</h2>
-                <% out.print("<p style='text-transform: uppercase;'>" + session.getAttribute("email") + "</p>"); %>
+                <p style='text-transform: uppercase;'> <%= r.getObject(10)%></p>
             </div>
 
-            <form action="">    
+
+
+
+            <form action="${pageContext.request.contextPath}/MiseAJour" method="post" onsubmit=" return Confirmer();">    
                 <div class="right-card">
 
                     <div class="row-card">
                         <div class="inside-row">
                             <label>Nom :</label> <br>
-                            <input type="text" name="nom" value="<%out.print(request.getSession().getAttribute("nom"));%>">  
+                            <input type="text" name="nomw" value="<%= r.getObject(3)%>">  
                         </div>
                         <div class="inside-row">
                             <label>Prenom :</label> <br>
-                            <input type="text" name="prenom" value="<%out.print(request.getSession().getAttribute("prenom"));%>">
+                            <input type="text" name="prenomw" value="<%= r.getObject(4)%>">
                         </div>
                     </div>
 
                     <div class="row-card">
                         <div class="inside-row">
                             <label>Date de naissance :</label> <br>
-                            <input type="date" name="datenaissance" value="<%out.print(request.getSession().getAttribute("age"));%>">  
+                            <input type="date" name="datenaissancew" value="<%= r.getObject(5)%>">  
                         </div>
                         <div class="inside-row">
-                            <label>A propos de moi :</label> <br>
-                            <input type="text" name="bio" value="<%out.print(request.getSession().getAttribute("bio"));%>">
+                            <label>À propos de moi :</label> <br>
+                            <input type="text" name="biow" value="<%= r.getObject(6)%>">
                         </div>
                     </div>
 
                     <div class="row-card">
                         <div class="inside-row">
                             <label>Adresse :</label> <br>
-                            <input type="text" name="adresse" value="<%out.print(request.getSession().getAttribute("adresse"));%>">  
+                            <input type="text" name="adressew" value="<%= r.getObject(7)%>">  
                         </div>
                         <div class="inside-row">
                             <label>Ville :</label> <br>
-                            <input type="text" name="ville" value="<%out.print(request.getSession().getAttribute("ville"));%>">
+                            <input type="text" name="villew" value="<%= r.getObject(8)%>">
                         </div>
                     </div>
 
                     <div class="row-card">
                         <div class="inside-row">
                             <label>E-mail :</label> <br>
-                            <input type="email" name="email" value="<%out.print(request.getSession().getAttribute("email"));%>">  
+                            <input type="email" name="emailw" value="<%= r.getObject(10)%>">  
                         </div>
                         <div class="inside-row">
                             <label>Téléphone :</label> <br>
-                            <input type="tel" name="tel" value="<%out.print(request.getSession().getAttribute("tel"));%>">
+                            <input type="tel" name="telw" value="<%= r.getObject(9)%>">
                         </div>
                     </div>
 
@@ -158,24 +204,29 @@
                     <div class="row-card">
                         <div class="inside-row">
                             <label>Mot de passe actuel :</label> <br>
-                            <input type="password" name="password"  value="<%out.print(request.getSession().getAttribute("pass"));%>">  
+                            <input type="password" name="passw" value="<%= r.getObject(11)%>">  
                         </div>
                         <div class="inside-row">
                             <label>Nouveau mot de passe :</label> <br>
-                            <input type="password" name="password"  value="<%out.print(request.getSession().getAttribute("pass"));%>" >  
+                            <input type="password" name="newpassw"  value="<%= r.getObject(11)%>" >  
                         </div>
                     </div>
 
                     <div class="row-card">
                         <div class="inside-row" id="btnnn">
-                            <button type="submit" name="operation" value="modifier" class="modifier-btn">MODIFIER MES INFORMATIONS</button>
+                            <button type="submit" name="operation" value="modifier" onclick="recuperer_etat(this)" class="modifier-btn">MODIFIER MES INFORMATIONS</button>
                         </div>
                         <div class="inside-row" id="btnnn">
-                            <button type="submit" name="operation" value="supprimer" class="supprimer-btn ">SUPPRIMER MON COMPTE</button>
+                            <button type="submit" name="operation" value="supprimer" onclick="recuperer_etat(this)" class="supprimer-btn ">SUPPRIMER MON COMPTE</button>
                         </div>
                     </div>
-
+                    <%
+                        if (request.getAttribute("message") != null) {
+                            out.print("<p style='color: red '>" + request.getAttribute("message") + "</p>");
+                        }
+                    %>
                 </div>
+
             </form>
         </div>
 

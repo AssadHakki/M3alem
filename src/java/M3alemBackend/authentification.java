@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
@@ -19,13 +18,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.jboss.weld.literal.DestroyedLiteral;
 
 /**
  *
  * @author Blanco
  */
-public class auth extends HttpServlet {
+public class authentification extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,10 +42,10 @@ public class auth extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet auth</title>");
+            out.println("<title>Servlet authentification</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet auth at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet authentification at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -81,7 +79,7 @@ public class auth extends HttpServlet {
         try {
             return connexion.Seconnecter().createStatement().executeQuery("select email from personne where email='" + email + "'").next();
         } catch (SQLException ex) {
-            Logger.getLogger(auth.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(authentification.class.getName()).log(Level.SEVERE, null, ex);
             return true;
 
         }
@@ -99,12 +97,10 @@ public class auth extends HttpServlet {
             if (operation.equals("connecter")) {
                 try {
                     HttpSession s = request.getSession();
-
                     String email = request.getParameter("email");
                     String password = request.getParameter("password");
                     String req = "select * from personne natural join profession where email ='" + email + "' and password ='" + password + "'";
                     ResultSet r = connexion.Seconnecter().createStatement().executeQuery(req);
-
                     System.out.println(req);
 
                     if (r.next()) {
@@ -121,26 +117,21 @@ public class auth extends HttpServlet {
                         s.setAttribute("profession", r.getObject(13));
 
                         request.getSession().setAttribute("id_personne", r.getObject(2));
-
                         response.sendRedirect("Profile/Profile.jsp");
 
                     } else {
                         request.setAttribute("message", "Erreur: Erreur De Login Ou Password");
-                        response.sendRedirect("Login/Login.jsp");
-
-                        //request.getRequestDispatcher("Login/Login.jsp").forward(request, response);
+                        request.getRequestDispatcher("Login/Login.jsp").forward(request, response);
                     }
                 } catch (IOException | SQLException e) {
-                      Logger.getLogger(auth.class.getName()).log(Level.SEVERE, null, e);
+                    Logger.getLogger(authentification.class.getName()).log(Level.SEVERE, null, e);
                 }
-
             }
 
             // SE DECONNECTER
             if (operation.equals("Se Deconnecter")) {
                 request.getSession().invalidate();
                 response.sendRedirect("Login/Login.jsp");
-
             }
 
             //S'INSCRIRE
@@ -179,8 +170,8 @@ public class auth extends HttpServlet {
                             request.getRequestDispatcher("Register/Register.jsp").forward(request, response);
                             return;
                         }
-                        String req = "insert into personne values(ID_PERSONNE.nextval,'" + nom + "','" + prenom + "',to_date('" + dd + "','yyyy-mm-dd'),'" + bio.replace("'", "''") + "','" + adresse + "','"
-                                + ville + "','" + tel + "','" + email + "','" + password + "','" + experience + "','" + professions + "')";
+                        String req = "insert into personne values(ID_PERSONNE.nextval,'" + nom + "','" + prenom + "',to_date('" + dd + "','yyyy-mm-dd'),'" + bio.replace("'", "''") + "','" + adresse + 
+                                "','" + ville + "','" + tel + "','" + email + "','" + password + "','" + experience + "','" + professions + "')";
                         System.out.println(req);
                         int r = connexion.Seconnecter().createStatement().executeUpdate(req);
                         if (r != 0) {
@@ -195,12 +186,12 @@ public class auth extends HttpServlet {
                     }
                 }
             }
-
-        } catch (SQLException | ParseException ex) {
-            Logger.getLogger(auth.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(authentification.class.getName()).log(Level.SEVERE, null, ex);
             request.getRequestDispatcher("/Register/Register.jsp").forward(request, response);
             request.setAttribute("message", "Erreur : veuillez vérifier vos informations");
         }
+
     }
 
     /**
