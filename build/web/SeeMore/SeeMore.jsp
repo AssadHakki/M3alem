@@ -4,6 +4,8 @@
     Author     : Blanco
 --%>
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="M3alemBackend.connexion"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,17 +71,24 @@
 
 
 
-
+        
 
 
         <!-- content begin -->
+        
+        
+        
+        
+        
         <div class="first-card">
             <div class="left-side">
             <%
-                    out.print("<h2 style='text-transform: uppercase;'>" + session.getAttribute("nom") + " " + session.getAttribute("prenom") + "</h2>");
-                    out.print("<p><span style='text-transform: capitalize;'>" + session.getAttribute("ville") + "</span>, Né le " + session.getAttribute("age") + ".</p>"    );
-                    out.print("<p> Profession : <span>" + session.getAttribute("profession") + ".</span> </p>");
-                    out.print("<p> Experience : <span>" + session.getAttribute("experience") + ".</span> </p>");
+                ResultSet R = connexion.Seconnecter().createStatement().executeQuery("select * from personne natural join profession where id_personne ="+request.getParameter("id_personne"));
+                R.next();
+                    out.print("<h2 style='text-transform: uppercase;'>" + R.getObject(3) + " " + R.getObject(4) + "</h2>");
+                    out.print("<p><span style='text-transform: capitalize;'>" + R.getObject(8) + "</span>, Né le " + R.getObject(5) + ".</p>"    );
+                    out.print("<p> Profession : <span>" + R.getObject(13) + ".</span> </p>");
+                    out.print("<p> Experience : <span>" + R.getObject(12) + ".</span> </p>");
                 
             %>
             </div>
@@ -91,7 +100,7 @@
             <div class="xx-side">
                 <h2>À PROPOS DE MOI :</h2>
                    <% 
-                       out.print("<p style='text-transform: capitalize;'>" + session.getAttribute("bio") + "</p>");
+                       out.print("<p style='text-transform: capitalize;'>" + R.getObject(6) + "</p>");
                    %>
             </div>
         </div>
@@ -103,13 +112,13 @@
                 <p>
                     <i class="fa fa-phone" aria-hidden="true"> &nbsp; &nbsp;</i> 
                      <% 
-                       out.print("<span>" + session.getAttribute("tel") + "  </span>");
+                       out.print("<span>" + R.getObject(9) + "  </span>");
                    %>
                 </p>
                 <p>
                     <i class="fa fa-envelope" aria-hidden="true"> &nbsp; &nbsp;</i> 
                      <% 
-                       out.print("<span style='text-transform: capitalize;'>" + session.getAttribute("email") + "  </span>");
+                       out.print("<span style='text-transform: capitalize;'>" + R.getObject(10) + "  </span>");
                    %>  
                 </p>
 

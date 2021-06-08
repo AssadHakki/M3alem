@@ -124,24 +124,31 @@
                     R = connexion.Seconnecter().createStatement().executeQuery("select * from personne natural join profession ORDER BY id_personne DESC");
                 }
 
-                while (R.next()) {
-                    String dd = R.getObject(5).toString();
-                    Date datenaissance = new SimpleDateFormat("yyyy-mm-dd").parse(dd);
-                    int age = (new Date().getYear() + 1900) - (datenaissance.getYear() + 1900);
+                if (!R.next()) {
+                    // ResultSet is empty
+                    out.print("<div class='empty-result' style='font-size:25px; text-transform:uppercase; text-align:center; margin:200px 0 110px;'>Aucun prestataire trouvé.</div>");
+                } else {
 
-                    out.print(
-                            "<div class='first-card'> "
-                            + "<div class='left-side'>"
-                            + "<h2>" + R.getObject(3) + " " + R.getObject(4) + "</h2>"
-                            + "<p><span style='text-transform: capitalize;'>" + R.getObject(8) + "</span>, " + age + " ans</p>"
-                            + "<p>Profession : <span>" + R.getObject(13) + "</span> </p>"
-                            + "<p>Experience : <span>" + R.getObject(12) + "</span> </p>"
-                            + "</div>"
-                            + "<img src='" + request.getContextPath() + "/Assets/Images/pdp.png' >"
-                            + "</div>"
-                    );
+                    while (R.next()) {
+                        String dd = R.getObject(5).toString();
+                        Date datenaissance = new SimpleDateFormat("yyyy-mm-dd").parse(dd);
+                        int age = (new Date().getYear() + 1900) - (datenaissance.getYear() + 1900);
+
+                        out.print(
+                                "<div class='first-card'> "
+                                + "<div class='left-side'>"
+                                + "<h2>" + R.getObject(3) + " " + R.getObject(4) + "</h2>"
+                                + "<p><span style='text-transform: capitalize;'>" + R.getObject(8) + "</span>, " + age + " ans</p>"
+                                + "<p>Profession : <span>" + R.getObject(13) + "</span> </p>"
+                                + "<p>Experience : <span>" + R.getObject(12) + "</span> </p>"
+                                + "<a class='seeMoreBtn' href='" + request.getContextPath()
+                                + "/SeeMore/SeeMore.jsp?id_personne=" + R.getObject(2) + "'style='padding:8px 20px; color:#fffb7f; border:1px solid #fffb7f; border-radius:8px; text-decoration:none; font-weight:500;'><i class='fa fa-plus' style='margin:20px 0;' aria-hidden='true'> </i>&nbsp; VOIR PLUS</a>"
+                                + "</div>"
+                                + "<img src='" + request.getContextPath() + "/Assets/Images/pdp.png' >"
+                                + "</div>"
+                        );
+                    }
                 }
-
             %>
 
 

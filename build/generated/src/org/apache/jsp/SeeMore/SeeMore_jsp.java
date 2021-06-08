@@ -3,6 +3,8 @@ package org.apache.jsp.SeeMore;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import java.sql.ResultSet;
+import M3alemBackend.connexion;
 
 public final class SeeMore_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -44,6 +46,8 @@ public final class SeeMore_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html lang=\"en\">\n");
       out.write("    <head>\n");
@@ -58,7 +62,7 @@ public final class SeeMore_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <!-- Style -->\n");
       out.write("        <link rel=\"stylesheet\" href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/Profile/Profile.css\">\n");
+      out.write("/SeeMore/SeeMore.css\">\n");
       out.write("\n");
       out.write("        <!-- Google font  -->\n");
       out.write("        <link href=\"https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap\" rel=\"stylesheet\">\n");
@@ -109,7 +113,9 @@ public final class SeeMore_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    <li><a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("/Profile/Profile.jsp\" >Mon Profil</a></li>\n");
-      out.write("                    <li>  <form method=\"POST\" action=\"../auth\">\n");
+      out.write("                    <li>  <form method=\"POST\" action=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/authentification\">\n");
       out.write("                            <input type=\"submit\" value=\"Se Deconnecter\" name=\"operation\" class=\"linkish\" style=\" background-color: transparent; border: 0; color: whitesmoke; cursor: pointer;\n");
       out.write("                                   display: inline;  outline: none;  font-weight: 100;  text-transform: uppercase; \"/> \n");
       out.write("                            </form></li>\n");
@@ -134,18 +140,25 @@ public final class SeeMore_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
-      out.write("\n");
+      out.write("        \n");
       out.write("\n");
       out.write("\n");
       out.write("        <!-- content begin -->\n");
+      out.write("        \n");
+      out.write("        \n");
+      out.write("        \n");
+      out.write("        \n");
+      out.write("        \n");
       out.write("        <div class=\"first-card\">\n");
       out.write("            <div class=\"left-side\">\n");
       out.write("            ");
 
-                    out.print("<h2 style='text-transform: uppercase;'>" + session.getAttribute("nom") + " " + session.getAttribute("prenom") + "</h2>");
-                    out.print("<p><span style='text-transform: capitalize;'>" + session.getAttribute("ville") + "</span>, Né le " + session.getAttribute("age") + ".</p>"    );
-                    out.print("<p> Profession : <span>" + session.getAttribute("profession") + ".</span> </p>");
-                    out.print("<p> Experience : <span>" + session.getAttribute("experience") + ".</span> </p>");
+                ResultSet R = connexion.Seconnecter().createStatement().executeQuery("select * from personne natural join profession where id_personne ="+request.getParameter("id_personne"));
+                        
+                    out.print("<h2 style='text-transform: uppercase;'>" + R.getObject(3) + " " + R.getObject(4) + "</h2>");
+                    out.print("<p><span style='text-transform: capitalize;'>" + R.getObject(8) + "</span>, Né le " + R.getObject(5) + ".</p>"    );
+                    out.print("<p> Profession : <span>" + R.getObject(13) + ".</span> </p>");
+                    out.print("<p> Experience : <span>" + R.getObject(12) + ".</span> </p>");
                 
             
       out.write("\n");
@@ -161,7 +174,7 @@ public final class SeeMore_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                <h2>À PROPOS DE MOI :</h2>\n");
       out.write("                   ");
  
-                       out.print("<p style='text-transform: capitalize;'>" + session.getAttribute("bio") + "</p>");
+                       out.print("<p style='text-transform: capitalize;'>" + R.getObject(6) + "</p>");
                    
       out.write("\n");
       out.write("            </div>\n");
