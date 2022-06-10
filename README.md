@@ -1,1 +1,2 @@
-# M3alem est un projet de fin d'études.
+# M3alem.
+Projet de fin d'étude qui est une plateforme de mise en relation pour la réalisation de services ou d'aides entre particuliers ou professionels.
